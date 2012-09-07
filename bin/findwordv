@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -n "$2" ]; then
+	find . -name "$1" -type f -exec findwordv2 $2 {} ';'
+else
+	find . -type f -exec findwordv2 $1 {} ';'
+fi

@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+import bak
+import sys
+import os
+
+dirName = ".Trash"
+
+def getLocalHomeDir():
+    if os.environ.has_key("HOME"):
+        homeName = os.environ["HOME"]
+        if homeName[-1:] != os.sep: 
+            return homeName + os.sep
+        else: 
+            return homeName
+    return "~" + os.sep
+    
+if __name__ == "__main__":
+    b = bak.Bak()
+    saveDirName = getLocalHomeDir() + dirName
+    for fileName in sys.argv[1:]:
+        if b.backupFile (fileName, saveDirName) == 0:
+            continue
+        print "Deleting   " + fileName,
+        try:
+            os.remove(fileName)
+            print "ok\n"
+        except os.error:
+            print "ERROR!"

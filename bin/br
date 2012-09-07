@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+  targetdir=$PWD
+else
+  targetdir=$1
+fi
+
+if which nautilus > /dev/null 2>&1 ; then
+  /usr/bin/nautilus --no-desktop "$targetdir" & > /dev/null 2>&1
+#  while true; do
+#      sleep 1
+#      if [ -d "${HOME}/Desktop" ]; then
+#          rmdir ${HOME}/Desktop
+#          exit
+#      fi
+#  done
+  exit
+fi
+
+if which rox-filer > /dev/null 2>&1 ; then
+  /usr/bin/rox-filer --dir=$targetdir &
+  exit
+fi
+
+if which XandrosFileManager > /dev/null 2>&1 ; then
+  XandrosFileManager $targetdir &
+  exit
+fi
+
+# other options
+#kfmclient folder file:$PWD > /dev/null 2>&1 &
+#gmc . > /dev/null 2>&1 &
+#konqueror . > /dev/null 2>&1 &
+
+echo "no worthy file-manager found"
+exit 1

@@ -1,0 +1,2 @@
+#!/bin/sh
+less +F -S $1

@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -z $1 ]; then
+    echo "You must give me a file to strip."
+    exit
+fi
+tr -d '\n' < $1 > $1.stripped

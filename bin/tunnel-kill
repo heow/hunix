@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#export USRHOST="hgoodman@208.72.159.219" 
+export USRHOST="heow@lispnyc.org"
+
+for i in `ps -ef | grep ssh | grep ${USRHOST} | grep -v restart | grep "ssh -C -N " | awk '{ print $2 }'`; do
+  echo "killing pid: $i"
+  kill $i
+done
+
+exit
+
+# gobo.lispfu.com
+
+wget -O - https://freedns.afraid.org/dynamic/update.php?U053WEFVTVRTTUlBQU5pSEtEdzo0MjM2MjI5
+
+# sushi.lispfu.com
+wget -O - https://freedns.afraid.org/dynamic/update.php?U053WEFVTVRTTUlBQU5pSEtEdzozMDc1NzEy
+
+# sushi.0x28.com
+wget -O - https://freedns.afraid.org/dynamic/update.php?U053WEFVTVRTTUlBQU5pSEtEdzozMDc1OTMw

@@ -1,0 +1,2 @@
+#!/bin/sh
+du -sm $(find $1 -type d -maxdepth 1 -xdev) | sort -g

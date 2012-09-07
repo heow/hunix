@@ -1,0 +1,3 @@
+#!/bin/sh
+# executes command in rp.sh which pauses it
+xterm -bg gray80 -fg gray40 -title "" +ls +sb -fn 6x12 -sl 1024 -e ~/.hunix/bin/rp.sh $* &

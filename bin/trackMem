@@ -1,0 +1,16 @@
+# make sure we have enough args
+if test -z "$1" ; then
+	echo "usage:  testMem { pid }"
+	echo "The output displays:"
+	echo "  Elapsed time since execution"
+	echo "  The resident set size of the process, in kilobytes."
+	echo "  The total size of the process in virtual memory, in kilobytes."
+	echo "  The total size of the process in virtual memory, in pages"
+	exit
+fi
+
+while true; do
+	ps -fyc -o etime -o rss -o vsz -o osz -p $1 | grep -v ELAPSED >> trackMem.out
+	tail -1 trackMem.out
+	sleep 10
+done

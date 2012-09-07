@@ -1,0 +1,2 @@
+#!/bin/sh
+prism -override "/home/heow/.webapps/tasks@prism.app/override.ini" -webapp tasks@prism.app

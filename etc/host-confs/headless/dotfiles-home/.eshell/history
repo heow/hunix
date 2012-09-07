@@ -1,0 +1,34 @@
+ls
+cd tmp
+ls
+cd
+ls
+exit
+exit
+grep -i james *
+grep -i foreman *
+exit
+cd
+cd tmp
+less index.php 
+exit
+exit
+ls
+ls *json
+exit
+exiut
+exit
+grep -i wilson * 
+exit
+(print "foo")
+(println "foo")
+(print "foo")
+touch HeowNet.muse
+exit
+cat SummerOfCode2009.muse >> SummerOfCode.muse
+ls *Code*
+cat SummerOfCode2007.muse >> SummerOfCode.muse 
+rm SummerOfCode2*
+ls
+rm SummerOfCode.muse
+exit

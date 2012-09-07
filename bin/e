@@ -1,0 +1,3 @@
+#!/bin/bash
+PATH=$PATH:~/.hunix/bin # just make sure
+emacsclient --alternate-editor=e-server -c $@ &

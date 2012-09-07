@@ -1,0 +1,287 @@
+#    _____     _         
+#   |_   _|_ _| | _____  
+#     | |/ _` | |/ / _ \ 
+#     | | (_| |   < (_) |
+#     |_|\__,_|_|\_\___/ 
+#    _   _ _           _           _ _   _  ___  
+#   | | | | |__  _   _| |_ _   _  / / | / |/ _ \ 
+#   | | | | '_ \| | | | __| | | | | | | | | | | |
+#   | |_| | |_) | |_| | |_| |_| | | | |_| | |_| |
+#    \___/|_.__/ \__,_|\__|\__,_| |_|_(_)_|\___/ 
+                                             
+2012-02-03 software
+  openssh-server ssh-import-id
+
+2012-02-03 software - first, admin
+  emacs emacs23 emacs23-bin-common emacs23-common emacsen-common grpn grun fping
+  muse-el
+  htop multitail debian-goodies curl dctrl-tools debtags deborphan wipe pwgen
+
+2012-02-03 sysmod - fonts
+  dpkg-reconfigure fontconfig
+  apt-get install xfonts-terminus 
+
+2012-02-03 software - notification
+  gxmessage
+
+2012-02-03 sysmod - thermal monitors
+  apt-get install hddtemp lm-sensors 
+  add-apt-repository  ppa:alexmurray/indicator-sensors
+
+2012-02-03 software - nautilus extensions
+  nautilus-actions nautilus-image-converter nautilus-open-terminal ooo-thumbnailer 
+  imagemagick libcdt4 libgraph4 libgvc5 libilmbase6 liblqr-1-0 libmagickcore3 libmagickcore3-extra
+  libmagickwand3 libnetpbm10 libopenexr6 libpathplan4 netpbm
+
+2012-02-03 software - git
+  git git-core git-gui gitk giggle git-cola gitg
+  git-man liberror-perl libgtksourceview2.0-0 libgtksourceview2.0-common libqt3-mt libqt4-designer
+  libqt4-help libqt4-scripttools libqt4-test libqtassistantclient4 libqtwebkit4 libxss1 patch
+  python-qt4 python-sip tcl tcl8.5 tk tk8.5 xxdiff
+
+2012-02-03 software - networking traffic tools
+  iptraf pktstat
+
+2012-02-03 software - synergy
+  quicksynergy synergy
+
+2012-02-03 software - gpg and gcal for thunderbird
+  enigmail
+  thunderbird-lightning
+  xul-ext-calendar-timezones xul-ext-gdata-provider xul-ext-lightning libstdc++5
+
+2012-02-03 software - mysql
+  mysql-server mysql-client
+  libdbd-mysql-perl libdbi-perl libhtml-template-perl libnet-daemon-perl libplrpc-perl mysql-client-5.1
+  mysql-client-core-5.1 mysql-server-5.1 mysql-server-core-5.1
+
+root pwd:um7ichoVo7thooyief4ua7waeg3Rei9j
+
+2012-02-03 sysmod - mysql
+  addgroup dev
+  adduser heow dev
+  adduser heow mysql
+  chmod g+rwx /var/lib/mysql
+
+2012-02-03 software - chrome
+  chromium-browser 
+  chromium-browser-l10n chromium-codecs-ffmpeg libnss3-1d
+
+2012-02-03 software - keepass
+  keepassx
+
+2012-02-03 software - svn
+  subversion
+  libapr1 libaprutil1 libsvn1
+
+2012-02-03 software - puppet mode
+  puppet-el
+
+2012-02-03 software - lisp
+  clisp cl-asdf 
+  common-lisp-controller libffcall1 libreadline5 libsigsegv2 realpath
+
+2012-02-03 sysmod - 3rd party software
+  # 3.0.3 in /opt/crashplan
+  # truecrypt-7.1-linux-x64.tar.gz
+
+2012-02-03 sysmod - mysql workbench
+  apt-get install libctemplate0 libgtkmm-2.4-1c2a libzip1 python-paramiko python-pysqlite2
+  mysql-workbench-gpl-5.2.37-1ubu1104-amd64.deb
+
+2012-02-03 software - teamviewer deps
+  # sudo apt-get install libc6-i386 lib32asound2 lib32z1 ia32-libs
+  gcc-4.6-base:i386 ia32-libs ia32-libs-multiarch:i386 lib32asound2
+  lib32bz2-1.0 lib32ffi6 lib32gcc1 lib32ncurses5 lib32ncursesw5 lib32stdc++6
+  lib32tinfo5 lib32z1 libacl1:i386 libattr1:i386 libaudio2:i386
+  libavahi-client3:i386 libavahi-common-data:i386 libavahi-common3:i386
+  libc6:i386 libc6-i386 libcomerr2:i386 libcups2:i386 libcupsimage2:i386
+  libcurl3:i386 libdb5.1:i386 libdbus-1-3:i386 libdrm-intel1:i386
+  libdrm-nouveau1a:i386 libdrm-radeon1:i386 libdrm2:i386 libexpat1:i386
+  libffi6:i386 libfontconfig1:i386 libfreetype6:i386 libgcc1:i386
+  libgcrypt11:i386 libgdbm3:i386 libgl1-mesa-dri:i386 libgl1-mesa-glx:i386
+  libglapi-mesa:i386 libglib2.0-0:i386 libgnutls26:i386 libgpg-error0:i386
+  libgssapi-krb5-2:i386 libice6:i386 libidn11:i386 libjpeg62:i386
+  libk5crypto3:i386 libkeyutils1:i386 libkrb5-3:i386 libkrb5support0:i386
+  liblcms1:i386 libldap-2.4-2:i386 libllvm2.9:i386 libmng1:i386 libnspr4:i386
+  libnss3:i386 libpciaccess0:i386 libpcre3:i386 libpng12-0:i386
+  libqt4-dbus:i386 libqt4-declarative:i386 libqt4-designer:i386
+  libqt4-network:i386 libqt4-opengl:i386 libqt4-qt3support:i386
+  libqt4-script:i386 libqt4-scripttools:i386 libqt4-sql:i386 libqt4-svg:i386
+  libqt4-test:i386 libqt4-xml:i386 libqt4-xmlpatterns:i386 libqtcore4:i386
+  libqtgui4:i386 librtmp0:i386 libsasl2-2:i386 libsasl2-modules:i386
+  libselinux1:i386 libsm6:i386 libsqlite3-0:i386 libssl1.0.0:i386
+  libstdc++6:i386 libtasn1-3:i386 libtiff4:i386 libuuid1:i386 libx11-6:i386
+  libxau6:i386 libxcb1:i386 libxdamage1:i386 libxdmcp6:i386 libxext6:i386
+  libxfixes3:i386 libxi6:i386 libxrender1:i386 libxss1:i386 libxt6:i386
+  libxxf86vm1:i386 zlib1g:i386
+
+2012-02-03 sysmod - teamviewer
+  sudo dpkg -i teamviewer_linux_x64.deb 
+
+2012-02-03 software - maven
+  maven2
+  ant ant-optional antlr bsh bsh-gcj ca-certificates-java default-jre-headless
+  fop gcj-4.6-base gcj-4.6-jre-lib icedtea-6-jre-cacao icedtea-6-jre-jamvm
+  icedtea-netx java-common java-wrappers libaccess-bridge-java
+  libaccess-bridge-java-jni libantlr-java libasm3-java
+  libavalon-framework-java libbackport-util-concurrent-java libbatik-java
+  libbsf-java libclassworlds-java libcommons-beanutils-java
+  libcommons-cli-java libcommons-codec-java libcommons-collections-java
+  libcommons-collections3-java libcommons-configuration-java
+  libcommons-digester-java libcommons-httpclient-java libcommons-io-java
+  libcommons-jxpath-java libcommons-lang-java libcommons-logging-java
+  libcommons-net2-java libcommons-validator-java libdoxia-java
+  libdoxia-sitetools-java libexcalibur-logkit-java libganymed-ssh2-java
+  libgcj-bc libgcj-common libgcj12 libgeronimo-jms-1.1-spec-java
+  libgnuinet-java libgnujaf-java libgnumail-java libgoogle-collections-java
+  libitext1-java libjaxp1.3-java libjdom1-java libjline-java libjsch-java
+  libjsr305-java libjtidy-java liblog4j1.2-java libmaven-archiver-java
+  libmaven-clean-plugin-java libmaven-compiler-plugin-java
+  libmaven-dependency-tree-java libmaven-file-management-java
+  libmaven-filtering-java libmaven-install-plugin-java
+  libmaven-jar-plugin-java libmaven-plugin-tools-java
+  libmaven-reporting-impl-java libmaven-resources-plugin-java
+  libmaven-scm-java libmaven-shade-plugin-java libmaven-shared-io-java
+  libmaven2-core-java libmodello-java libnekohtml-java
+  libnetbeans-cvsclient-java liboro-java libplexus-ant-factory-java
+  libplexus-archiver-java libplexus-bsh-factory-java libplexus-build-api-java
+  libplexus-cipher-java libplexus-classworlds-java libplexus-compiler-api-java
+  libplexus-compiler-javac-java libplexus-compiler-manager-java
+  libplexus-component-api-java libplexus-container-default-java
+  libplexus-containers-java libplexus-digest-java libplexus-i18n-java
+  libplexus-interactivity-api-java libplexus-interpolation-java
+  libplexus-io-java libplexus-sec-dispatcher-java libplexus-utils-java
+  libplexus-velocity-java libqdox-java libregexp-java librhino-java
+  libsaxon-java libservlet2.4-java libservlet2.5-java libslf4j-java
+  libwagon-java libwerken.xpath-java libxalan2-java libxbean-java
+  libxerces2-java libxml-commons-external-java libxmlgraphics-commons-java
+  maven2 openjdk-6-jre openjdk-6-jre-headless openjdk-6-jre-lib rhino
+  ttf-dejavu-extra tzdata-java velocity
+
+2012-02-03 software - virtualbox
+  virtualbox
+  libvncserver0 python-central virtualbox-dkms virtualbox-qt
+
+2012-02-03 software - gimp
+  gimp gimp-data-extras gimp-help-en gnome-xcf-thumbnailer
+  gimp-data gimp-help-common libbabl-0.0-0 libgegl-0.0-0 libgimp2.0
+
+2012-02-03 software - gqview
+  gqview
+  exiftran geeqie geeqie-common ufraw-batch
+
+2012-02-03 sysmod - dvd 
+  sudo apt-get install libdvdread4
+  sudo /usr/share/doc/libdvdread4/install-css.sh
+
+2012-02-03 software - acidrip
+  acidrip 
+  esound-common libaudiofile0 libavcodec53 libavformat53 libavutil51 libdca0
+  libdirectfb-1.2-9 libenca0 libesd0 libfaad2 libgsm1 liblzo2-2 libmp3lame0
+  libopenal1 libpostproc52 libschroedinger-1.0-0 libsvga1 libswscale2
+  libts-0.0-0 libva1 libvdpau1 libvpx0 libx264-116 libxvidcore4 lsdvd mencoder
+  mplayer tsconf
+
+2012-02-03 software - wallpaper changer
+  wallch
+  libao-common libao4 libaudio-scrobbler-perl libblas3gf
+  libconfig-inifiles-perl libcv2.1 libdc1394-22 libencode-locale-perl
+  libfile-listing-perl libfont-afm-perl libgfortran3 libhighgui2.1
+  libhtml-form-perl libhtml-format-perl libhtml-parser-perl
+  libhtml-tagset-perl libhtml-tree-perl libhttp-cookies-perl
+  libhttp-daemon-perl libhttp-date-perl libhttp-message-perl
+  libhttp-negotiate-perl libid3tag0 libio-socket-ssl-perl liblapack3gf
+  liblwp-mediatypes-perl liblwp-protocol-https-perl libmad0 libmailtools-perl
+  libnet-http-perl libnet-ssleay-perl liburi-perl libwww-perl
+  libwww-robotrules-perl mpg321
+
+2012-02-05 software - multiple workspaces in Unity
+  compizconfig-settings-manager
+  compiz-plugins compiz-plugins-main python-compizconfig
+
+2012-02-05 software - terminator, rxvt
+  terminator rxvt
+  libart-2.0-2 libbonobo2-0 libbonobo2-common libbonoboui2-0
+  libbonoboui2-common libglade2-0 libgnome2-0 libgnomecanvas2-0
+  libgnomecanvas2-common libgnomeui-0 libgnomeui-common libkeybinder0
+  python-gnome2 python-keybinder python-pyorbit
+
+2012-02-06 software - gnome-fallback    
+  gnome-session-fallback desktop-base
+  alacarte gir1.2-panelapplet-4.0 gnome-applets gnome-applets-data gnome-panel
+  gnome-panel-data libpanel-applet-4-0 python-gmenu
+
+2012-02-06 software - gnome-shell
+  gnome-shell
+  caribou cups-pk-helper gir1.2-accountsservice-1.0 gir1.2-caribou-1.0
+  gir1.2-clutter-1.0 gir1.2-cogl-1.0 gir1.2-folks-0.6 gir1.2-gee-1.0
+  gir1.2-gkbd-3.0 gir1.2-json-1.0 gir1.2-mutter-3.0 gir1.2-networkmanager-1.0
+  gir1.2-polkit-1.0 gir1.2-telepathyglib-0.12 gir1.2-telepathylogger-0.2
+  gir1.2-upowerglib-1.0 gjs gnome-icon-theme-full gnome-themes-standard
+  libcaribou0 libclutter-1.0-0 libclutter-1.0-common libcogl-common libcogl5
+  libgjs0c libmozjs185-1.0 libmutter0 mesa-utils mutter-common
+
+2012-02-06 software - wine 1.3
+  wine1.3
+  cabextract fonts-horai-umefont gnome-exe-thumbnailer icoutils lib32nss-mdns
+  ttf-droid ttf-mscorefonts-installer unrar winbind wine1.3 wine1.3-gecko
+  winetricks
+
+2012-02-07 software - dconf
+  dconf-tools
+
+2012-02-08 software - php-mode
+  php-elisp
+
+2012-02-20 software - password hashing
+  libcrypt-openssl-random-perl makepasswd
+
+2012-02-26 sysmod - heroku
+  wget -qO- https://toolbelt.heroku.com/install.sh | sh
+
+2012-03-01 sysmod - cairo dock
+  sudo add-apt-repository ppa:cairo-dock-team/ppa
+  sudo apt-get update
+  sudo apt-get install cairo-dock cairo-dock-plug-ins
+  # cairo-dock cairo-dock-core cairo-dock-data cairo-dock-plug-ins
+  # cairo-dock-plug-ins-data cairo-dock-plug-ins-integration libetpan15
+  # libgtkglext1
+
+2012-03-06 software - beep
+  beep
+
+2012-03-10 sysmod - beep
+  # mod /etc/rc.local
+  # add modprobe pcspkr
+
+2012-05-20 software - pidgin
+  indicator-status-provider-pidgin pidgin pidgin-data pidgin-libnotify
+  pidgin-skype
+
+2012-05-20 software - dropbox
+  nautilus-dropbox
+
+2012-05-27 sysmod - install 12.04 LTS
+  # mysql pwd: f1cRU9qJpXuPK3eLnkuFYyRh33DdTnSk
+  apt-get install lo-menubar # libre office global menu
+  
+2012-05-27 software - autokey
+  autokey-common autokey-gtk libgtksourceview2.0-0 libgtksourceview2.0-common
+  python-glade2 python-gtksourceview2 python-xlib wmctrl
+  # if grep -q 'Autokey' <(echo `gsettings get com.canonical.Unity.Panel systray-whitelist`); then echo "'Autokey' exists in Unity panel whitelist. Nothing to do here."; else echo "Adding 'Autokey' to Unity panel whitelist." && gsettings set com.canonical.Unity.Panel systray-whitelist "`echo \`gsettings get com.canonical.Unity.Panel systray-whitelist | tr -d ]\`,\'Autokey\']`"; fi
+
+20102-05-28 software - sawfish
+  librep9 rep rep-gtk sawfish sawfish-data sawfish-merlin-ugliness
+
+20102-05-29 software - sawfish build
+  automake autotools-dev m4
+  libltdl-dev libtool
+  libpthread-stubs0 libpthread-stubs0-dev libx11-dev libx11-doc libxau-dev
+  libxcb1-dev libxdmcp-dev libxext-dev libxinerama-dev x11proto-core-dev
+  x11proto-input-dev x11proto-kb-dev x11proto-xext-dev x11proto-xinerama-dev
+  xorg-sgml-doctools xtrans-dev
+  libxrandr-dev libxrender-dev x11proto-randr-dev x11proto-render-dev
+  libexpat1-dev libfontconfig1-dev libfreetype6-dev libxft-dev zlib1g-dev
+  libice-dev
+  limsm-dev

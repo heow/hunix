@@ -1,0 +1,3 @@
+#!/bin/bash
+if [ -z "$2" ]; then echo "two files" ; exit; fi
+emacs --eval "(ediff-files \"$1\" \"$2\")"

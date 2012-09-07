@@ -1,0 +1,322 @@
+ 
+#############################################################################
+# The default settings are defaults, they are used if they are NOT
+# overridden by using an explicit section (as in "llxt w") or by the
+# command line (as in "llxt --verbose 1")
+#############################################################################
+
+[default] 
+
+# This is what you see when you list the sections (as in "llxt --list") 
+desc: rxvt with dir and display ON 
+
+# User and host name 
+#user: bob 
+host: localhost 
+
+# Shell type to use, 'B'ourne = (sh, bash, ksh, zsh) 'C'shell = (csh, tcsh) 
+shell: bourne 
+
+# Communication type, supports ssh, rsh, and ftp to move .llxt_setup file to 
+# the remotehost 
+comm: ssh 
+
+# Verbose = debugging level.  Supports 1 through 9 
+optionVerbose: 0 
+
+# Turn this ON if you want to set the $DISPLAY and xauth info on the remotehost 
+optionDisplay: 1 
+
+# Turn this ON if you want to automatically set the directory of the 
+# remote host to the current one of the localhost, very handy 
+optionDir: 1 
+
+# Standard terminal (path may be required for SSH) and options you like 
+# Note that $LLXT_REMOTEHOST will be translated to the targethost 
+#           $LLXT_REMOTEUSER is username, others may follow 
+#term: /usr/bin/rxvt  
+term: con
+termOptions: -fg gray50 -bg black -cr white -title $LLXT_REMOTEHOST -ls +sb -fn lucidasanstypewriter-4 -sl 1024
+
+# Additional options for connecting to remotehosts, (not used in SSH) 
+# these are appended to the end of the TERM setting to make the executable 
+termRemoteOptions: -e rlogin -l $LLXT_REMOTEUSER $LLXT_REMOTEHOST 
+
+# Turn this OFF if ICMP on your network is disabled (read: ping fails)
+#optionPing: 0
+
+#############################################################################
+# These properties override what was defined in the [default] section.  Each
+# section can be called directly as the first command line arg.  As in:
+#    llxt svr
+# Section properties can be appended to or overridden by the command line:
+#    llxt er --user alice
+#    llxt svr --host otherserver
+#############################################################################
+
+#############################################################################
+# personal
+#############################################################################
+
+[tf-adm]
+desc: test-fest admin
+host: s38265.gridserver.com
+user: serveradmin%tesfest.org
+
+[lisp]
+desc: LispNYC
+user: heow
+host: lispnyc.org
+
+[lisp-adm]
+desc: LispNYC
+user: cl-user
+host: lispnyc.org
+
+[lisp-root]
+desc: LispNYC
+user: root
+host: www.lispnyc.org
+
+[lisp-arc]
+desc: LispNYC
+user: archive
+host: lispnyc.org
+
+[lisp-fb]
+desc: LispNYC
+user: facebook
+host: lispnyc.org
+
+[agi]
+desc: AlphaGeeksInc
+user: alphagee
+host: alphageeksinc.com
+
+[su]
+desc: sushi
+user: heow
+term: con
+host: sushi
+
+[su-root]
+desc: sushi
+user: root
+term: con
+host: sushi
+
+[alu]
+desc: ALU - Big Bag of Pages
+user: heow
+term: con
+host: bibop.alu.org
+
+[cln]
+desc: Lisp Resouce Kit at Common-Lisp.net
+user: hgoodman
+host: common-lisp.net
+
+[ck-old]
+desc: cinekink
+user: kinkster
+comm: ssh
+term: con
+host: 207.210.106.109
+
+[ck]
+desc: cinekink next generation
+user: kinkster
+comm: ssh
+term: con
+host: 97.107.131.42
+
+[ck-adm]
+desc: cinekink admin
+user: root
+comm: ssh
+term: con
+host: 97.107.131.42
+
+[u2i]
+desc: firewall.u2i.com
+user: developer
+host: firewall.u2i.com
+optionDisplay: 1
+
+[3t]
+desc: Three Tiny Terriers
+user: threetin
+#host: 64.6.230.223
+host: threetinyterriers.com
+optionDisplay: 1
+
+[miso]
+desc: miso
+user: hgoodman
+host: 208.72.159.219
+
+[miso-root]
+desc: miso
+user: root
+host: 208.72.159.219
+
+[ika]
+desc: inkstation
+user: heow
+host: ika
+
+[ika-adm]
+desc: inkstation
+user: ikaadm
+host: ika
+
+[ika-root]
+desc: inkstation
+user: root
+host: ika
+
+[usnam-root]
+desc: ghx-nuvia usnam
+host: usnam
+user: root
+
+[usnam]
+desc: ghx-nuvia usnam
+host: usnam
+user: heow
+
+[as-cgw]
+desc: adsafe colo gateway
+host: gw.303net.net
+user: heow
+
+[as-agw]
+desc: adsafe colo gateway
+host: gw.amazon.303net.net
+user: heow
+
+[as1]
+desc: adsafe
+host: ec2-174-129-81-27.compute-1.amazonaws.com
+user: heow
+
+[ash]
+desc: adsafe hmonat
+host: 72.4.126.161
+user: hmonat
+
+[ass1]
+desc: adsafe  dev svr1
+host: svr1.adsafe.saferoute.net
+user: heow
+
+[ass2]
+desc: adsafe  dev svr2
+host: svr2.adsafe.saferoute.net
+user: heow
+
+[ass3]
+desc: adsafe  dev svr3
+host: svr3.adsafe.saferoute.net
+user: heow
+
+[ass4]
+desc: adsafe  dev svr4
+host: svr4.adsafe.saferoute.net
+user: heow
+
+[igor]
+desc: sql free nyc
+host: igor.evilmonkeylabs.net
+user: heowbert
+
+[dennix]
+desc: dennix
+host: 74.115.254.6
+user: root
+
+[nn]
+desc: nanonote
+host: 192.168.3.2
+user: root
+
+[marj]
+desc: marjory
+host: marjory
+user: heow
+
+[di]
+desc: drupal it
+host: 173.255.233.194
+user: root
+
+[diadm]
+desc: drupal it admin
+host: 173.255.233.194
+user: diadm
+
+#############################################################################
+# work
+#############################################################################
+
+[ti]
+desc: titan clickfacts
+host: titan.clickfacts.com
+user: root
+
+[ah]
+desc: Art House
+host: 192.168.10.2
+user: arthouse
+
+[mds]
+desc: Marinas.com staging
+host: 65.99.209.245
+user: root
+
+[md1-root]
+desc: Marinas.com dev
+host: 67.202.96.147
+user: root
+
+[md1]
+desc: Marinas.com dev
+host: 67.202.96.147
+user: heow
+
+[md2-root]
+desc: Marinas.com dev2
+host: 67.202.126.20
+user: root
+
+[md2]
+desc: Marinas.com dev2
+host: 67.202.126.20
+user: heow
+
+[bit]
+desc: Brandorr Internal Twiki
+host: twiki.brandorr.com
+user: root
+
+[biw]
+desc: Brandorr Internal FosWiki
+host: foswiki.brandorr.com
+user: root
+
+[mnn]
+desc: MNN
+host: 216.164.83.163
+user: heow
+port: 3122
+
+[bbb]
+desc: Big Blue Button
+host: bbb.brandorr.com
+user: bgupta
+
+[28]
+desc: 0x28.com
+host: 46.23.72.77
+user: root
+

@@ -1,0 +1,3 @@
+#!/bin/ksh
+PLUSOPTS="+duplex +2perpage"
+. printcode -nonums $@

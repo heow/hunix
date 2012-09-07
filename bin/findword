@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ -n "$2" ]; then
+	find . -name "$2" -type f -exec grep -il "$1" {} ';'
+else
+	find . -type f -exec grep -il $1 {} ';'
+fi

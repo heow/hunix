@@ -1,0 +1,18 @@
+#/bin/bash
+echo "Uncomment the 'ServicePort 4200' line."
+echo "ENTER to continue"
+read y
+sudo emacs /usr/local/crashplan/conf/ui.properties
+CrashPlanDesktop &
+
+echo "Select host:"
+echo "  0. Localhost"
+echo "  1. Cinekink"
+echo "  2. Miso"
+echo "  3. DrupalIt"
+read X
+
+if [ "$X" == "0" ]; then ssh -L 4200:localhost:4243 heow@localhost ; fi
+if [ "$X" == "1" ]; then ssh -L 4200:localhost:4243 kinkster@cinekink.com ; fi
+if [ "$X" == "2" ]; then ssh -L 4200:localhost:4243 hgoodman@208.72.159.219 ; fi
+if [ "$X" == "3" ]; then ssh -L 4200:localhost:4243 diadm@173.255.233.194 ; fi

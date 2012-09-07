@@ -1,0 +1,3 @@
+#!/bin/sh
+synclient TouchpadOff=0
+touchpad-unfuck.sh

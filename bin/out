@@ -1,0 +1,4 @@
+$* > ~/tmp/out.txt
+if [ -s ~/tmp/out.txt ]; then
+	~/.hunix/bin/e ~/tmp/out.txt
+fi

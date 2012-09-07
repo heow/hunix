@@ -1,0 +1,13 @@
+#!/bin/sh
+#ssh -C -N -L localhost:24800:buta:24800 heow@buta &
+#synergyc -f localhost
+killall synergyc
+#synergyc --name `hostname` -f 192.168.0.199 # lumenarch
+#synergyc --name `hostname` -f tako
+
+for i in `ps -ef | grep ssh | grep 24800 | awk '{ print $2}'`; do
+    echo "killing pid: $i"
+    kill $i
+done
+ssh -C -N -L localhost:24800:tako:24800 heow@tako &
+synergyc -f localhost

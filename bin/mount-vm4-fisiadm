@@ -1,0 +1,2 @@
+#!/bin/sh
+sshfs fisiadm@fipsvm4.intdata.com:/var/local /home/heow/mnt/vm4-fisiadm

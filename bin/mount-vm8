@@ -1,0 +1,2 @@
+#!/bin/sh
+sshfs heow@fipsvm8.intdata.com:/home/heow /home/heow/mnt/vm8

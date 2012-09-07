@@ -1,0 +1,6 @@
+#!/bin/sh
+#trueprint --n --no-cover-sheet --tabsize=4 --point-size=7 --two-up --double-sided $*
+#trueprint --n --no-cover-sheet --tabsize=4 --point-size=10 --two-up --double-sided $*
+#trueprint --n --no-cover-sheet --tabsize=4 --point-size=10 --two-up $*
+
+trueprint --n --point-size=10 --no-cover-sheet --tabsize=4 --two-up $*

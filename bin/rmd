@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -d "${1}" ]; then
+  echo -n "Are you SURE you want to delete $1 and all of its files? "
+  read yn
+  if [ "y" == "${yn}" ] ; then 
+    rm -rf "$@"
+  fi
+else
+  echo "$1 is not a directory."
+fi

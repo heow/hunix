@@ -1,0 +1,156 @@
+#!/bin/bash
+#
+# regexp replace a string by another in a files (inplace!)
+# needs perl
+# version 2.1
+# author: joerg arndt (arndt@jjj.de)
+#
+
+set -
+
+########################################
+
+function usage
+{
+THIS=`basename $0`;
+cat <<EOF
+  Usage:
+  $THIS [OPTION] OLDEXPR  NEWEXPR  FILE1  [ FILE2 FILE3 ... ]
+  OLDEXPR and NEWEXPR should usually be in single quotes.
+  Use perl regexp syntax.
+  (e.g. unescaped chars "()^$" have special meanings).
+  OPTION must be first argument
+  OPTION "-i" sets interactive mode, i.e.
+  you will be asked for confirmation before each file is changed.
+  (interactive mode is the default).
+  OPTION "-f" sets non interactive mode (beware!).
+  EXAMPLES:
+  $THIS old_func_name new_func_name *.cc
+  $THIS 'old_func_name_([a-z]+)' 'new_func_name_$1' *.cc
+  find . -name *.cc -exec $THIS old_func_name new_func_name {} \;
+EOF
+exit -1 ;
+}
+
+if [ $# -lt 3 ]; then  usage;  fi
+if [ "$1" = "-h" ]; then  usage;  fi
+if [ "$1" = "-?" ]; then  usage;  fi
+if [ "$1" = "--help" ]; then  usage;  fi
+if [ "$1" = "-help" ]; then  usage;  fi
+
+
+########################################
+
+INTERACTIVE=1;
+
+if [ "$1" = "-f" ]; then  INTERACTIVE=0; shift;  fi
+
+if [ "$1" = "-i" ]; then  INTERACTIVE=1; shift;  fi
+
+
+OLDEXPR=$1
+NEWEXPR=$2
+shift
+shift
+
+
+if [ -z "$OLDEXPR" ]; then
+    echo 'empty OLDEXPR !';
+    echo ' (exiting) ';
+    exit -1;
+fi
+
+
+TMP=/tmp/replace.$$.tmp
+BAK=/tmp/replace.$$.bak
+
+
+########################################
+for FILE in  $*; do
+    echo " FILE $FILE : ";
+
+    ## skip zero byte files:
+    if [ ! -s $FILE ]; then
+        echo "skipping $FILE (has length zero)";
+	continue;
+    fi
+
+    ## skip symbolic links:
+    if [ -L $FILE ]; then
+        echo "skipping $FILE (symbolic link)";
+	continue;
+    fi
+
+    ## skip directories:
+    if [ -d $FILE ]; then
+        echo "skipping $FILE (directory)";
+	continue;
+    fi
+
+    ## must be readable:
+    if [ ! -r $FILE ]; then
+        echo "skipping $FILE (not readable)";
+	continue;
+    fi
+
+    ## must be writable:
+    if [ ! -w $FILE ]; then
+        echo "skipping $FILE (not writeable)";
+	continue;
+    fi
+
+    ## file exists and a regular file ?:
+    if [ ! -f $FILE ]; then
+        echo "skipping $FILE (it does not exist or is no regular file)";
+	continue;
+    fi
+
+    cp $FILE $BAK  ## create backup
+
+    cp $FILE $TMP;  ## to have identical permissions for new file
+
+    ############################
+    ## work is done here:
+
+    LINE1="\$cmd='s/$OLDEXPR/$NEWEXPR/g'; ";
+    LINED="print \"cmd=[[\",\$cmd,\"]]\n\"; ";  ## debug
+    LINE2="while(<STDIN>) {eval(\$cmd); print;}"
+    perl -we "$LINE1 $LINE2" < $FILE  > $TMP;
+#    perl -we "$LINE1 $LINED $LINE2" < $FILE  > $TMP;
+
+    ############################
+
+    ## created zero byte file ?
+    ## most likely an error in the regexpressions
+    if [ ! -s $TMP ]; then
+        echo 'zero filesize !  (exiting)';
+        exit -1;
+    fi
+
+    if [ "$INTERACTIVE" = "0" ]; then
+        ## non-interactive: replace if file changed
+        if ! diff $FILE $TMP; then
+            mv $TMP $FILE;
+        fi
+    else
+        ## interactive: replace if file changed & user says ok
+        if ! diff $FILE $TMP; then
+            echo -n "accept these changes ('y' for ok) ?";
+            read answer;
+            if [ "$answer" = "y" ]; then
+                echo "changes accepted."
+                mv $TMP $FILE;
+            else
+                echo "changes rejected."
+            fi
+        fi
+    fi
+done
+
+
+rm -f $TMP
+rm -f $BAK
+
+exit 0;
+
+########################################

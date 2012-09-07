@@ -1,0 +1,2 @@
+#!/bin/sh
+perl ~/.hunix/bin/replacestring.pl $1 $2 $3

@@ -1,0 +1,7 @@
+#!/bin/sh
+# yes, I know it is redundant!  
+# but what else will print the name BEFORE the contents
+if grep -sil $1 $2; then
+	grep -si $1 $2
+fi
+

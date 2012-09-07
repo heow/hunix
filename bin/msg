@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# make it go bing!
+if which beep > /dev/null 2>&1 ; then
+    beep
+fi
+
+# tell us remotely
+if which wget > /dev/null 2>&1 ; then
+    wget -o /dev/null -O /dev/null -b "http://www.alphageeksinc.com/msg?txt=$*" > /dev/null 2>&1
+fi
+
+if which notify-send > /dev/null 2>&1 ; then
+    notify-send "$*"
+    exit
+fi
+
+if which gmessage > /dev/null 2>&1 ; then
+    gmessage "$*"
+    exit
+fi
+
+if which xdialog > /dev/null 2>&1 ; then
+    xdialog --msgbox "$*" 10 50
+    exit
+fi
+
+if which Xdialog > /dev/null 2>&1 ; then
+    Xdialog --msgbox "$*" 10 50
+    exit
+fi
+
+xmessage -center "$*"
