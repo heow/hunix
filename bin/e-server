@@ -1,5 +1,12 @@
 #!/bin/bash
 export xt="-fn 6x10"
+export cmd="emacs"
+
+# OSX, Mac gui?
+if [ -f /Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs ]; then
+  cmd="/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs"
+fi
+
 if [ -z $1 ]; then
    if [ "tako" == "`hostname`" ]; then
        arg=~/prj-work/doc-wiki/WikiIndex.muse
@@ -10,17 +17,17 @@ else
    arg=$1
 fi
 if [ -n "$DISPLAY" ]; then
-    emacs $xt -title "$USER@$HOSTNAME $arg" "$arg" &
+    $cmd $xt -title "$USER@$HOSTNAME $arg" "$arg" &
 else
     case "$TERM" in
-        "vt100" ) 		 emacs $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
-        "rxvt" ) 		 emacs $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
-        "xterm" ) 		 emacs $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
-        "xterm-debian" )         emacs $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
-        "eterm" ) 	         emacs $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
-        "dumb" ) 		 emacs -nw $arg ;;
-        "linux" ) 		 emacs -nw $arg ;;
-        "" ) 	     	         emacs -nw $arg ;;
-        * ) 			 emacs -nw $arg ;;
+        "vt100" ) 		 $cmd $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
+        "rxvt" ) 		 $cmd $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
+        "xterm" ) 		 $cmd $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
+        "xterm-debian" )         $cmd $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
+        "eterm" ) 	         $cmd $xt -title "$USER@$HOSTNAME $arg" $arg & ;;
+        "dumb" ) 		 $cmd -nw $arg ;;
+        "linux" ) 		 $cmd -nw $arg ;;
+        "" ) 	     	         $cmd -nw $arg ;;
+        * ) 			 $cmd -nw $arg ;;
     esac
 fi

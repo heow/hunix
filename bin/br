@@ -6,8 +6,13 @@ else
   targetdir=$1
 fi
 
+if which open > /dev/null 2>&1 ; then
+  open "$targetdir" &
+  exit
+fi
+
 if which nautilus > /dev/null 2>&1 ; then
-  /usr/bin/nautilus --no-desktop "$targetdir" & > /dev/null 2>&1
+  nautilus --no-desktop "$targetdir" & > /dev/null 2>&1
 #  while true; do
 #      sleep 1
 #      if [ -d "${HOME}/Desktop" ]; then

@@ -17,7 +17,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 #
 # PATH
 #
-export PATH=${HOME}/.hunix/bin:/sbin:/usr/sbin:/usr/local/sbin:${PATH}
+export PATH=${HOME}/.hunix/bin:/sbin:/usr/sbin:/opt/local/bin:/usr/local/bin:${PATH}
 
 # java 
 #export JBOSS_HOME=${HOME}/prj/jboss/jboss-3.0.0_tomcat-4.0.3
