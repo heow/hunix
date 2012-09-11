@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # make it go bing!
 if which beep > /dev/null 2>&1 ; then
@@ -10,24 +10,36 @@ if which wget > /dev/null 2>&1 ; then
     wget -o /dev/null -O /dev/null -b "http://www.alphageeksinc.com/msg?txt=$*" > /dev/null 2>&1
 fi
 
+# osx?
+if [ -d "/Applications/terminal-notifier.app/" ]; then
+    # the title is easier to read than the message
+    /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "$*" -message "job complete"
+    exit
+fi
+
+# ubuntu?
 if which notify-send > /dev/null 2>&1 ; then
     notify-send "$*"
     exit
 fi
 
+# gnome?
 if which gmessage > /dev/null 2>&1 ; then
     gmessage "$*"
     exit
 fi
 
-if which xdialog > /dev/null 2>&1 ; then
-    xdialog --msgbox "$*" 10 50
-    exit
-fi
-
+# X11?
 if which Xdialog > /dev/null 2>&1 ; then
     Xdialog --msgbox "$*" 10 50
     exit
 fi
 
+# old X11?
+if which xdialog > /dev/null 2>&1 ; then
+    xdialog --msgbox "$*" 10 50
+    exit
+fi
+
+# just punt
 xmessage -center "$*"

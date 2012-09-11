@@ -106,12 +106,6 @@
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 
-;; ELPA
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 ;; old-school sucker
 (require 'fpl-moo)
 
@@ -383,7 +377,7 @@ by using nxml's indentation rules."
 ;;; interfacing with ELPA, the package archive.
 ;;; Move this code earlier if you want to reference
 ;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+;(when
+;    (load
+;     (expand-file-name "~/.emacs.d/elpa/package.el"))
+;  (package-initialize))
