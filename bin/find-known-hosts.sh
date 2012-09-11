@@ -33,13 +33,17 @@ echo "Using MAC addresses from ${ETCFILE}"
 
 # ping our local network
 export LOCALNET=`myip.sh | cut -f 1-3 -d "."`
-fping -a -q -r0 -A -g "${LOCALNET}.0/24" 2> /dev/null 
+fping -g "${LOCALNET}.0/24" 2> /dev/null 
 
 # check the arp table for the known MACs
 while read LINE ; do
     export MAC=`echo $LINE | cut -d " " -f 1 | tr "[A-Z]" "[a-z]"`
+    # osx needs leading 0s added to mac
+    if [[ "Darwin" == `uname` ]]; then
+        MAC=`echo $MAC | sed -e 'y/ABCDEF/abcdef/' -e 's/0\([0-9a-f]\)/\1/g'`
+    fi
     export HOSTS=`echo $LINE | cut -d " " -f 2-`
-    export IP=`arp -n | grep $MAC | cut -d " " -f 1 | tr "[A-Z]" "[a-z]"`
+    export IP=`arp -n -a | grep $MAC | cut -d " " -f 2 | cut -d "(" -f 2 | cut -d ")" -f 1 | tr "[A-Z]" "[a-z]"`
     if [ -z "$IP" ] ; then
         continue
     fi

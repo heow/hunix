@@ -17,7 +17,7 @@ fi
 export HOSTFILE="${HOME}/.ssh/config"
 export IPADDR=$1
 export HOSTNAME=$2
-export TMPFILE=`mktemp -p /tmp addhost.XXXXXXX`
+export TMPFILE=`mktemp addhost.XXXXXXX`
 
 # check each line of output to see if... 
 export EDITED=0
