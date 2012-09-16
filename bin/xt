@@ -3,7 +3,6 @@
 if [ -d "/Applications/iTerm.app" ]; then
   open -n "/Applications/iTerm.app"
 fi
-exit
 
 if [ ! -z "$1" ] ; then
   cd "$1"
