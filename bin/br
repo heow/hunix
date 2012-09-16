@@ -7,7 +7,7 @@ else
 fi
 
 if which open > /dev/null 2>&1 ; then
-  open "$targetdir" &
+  open "$targetdir"
   exit
 fi
 

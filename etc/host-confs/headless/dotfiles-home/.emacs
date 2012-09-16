@@ -179,8 +179,8 @@
         (start-process-shell-command 
          "browse-gui" 
          "*scratch*" 
-         (concat "/usr/bin/nautilus --no-desktop " dir-as-string)))
-         ;"/usr/bin/rox-filer" "--new" dir-as-string))
+         (concat "~/.hunix/bin/br " dir-as-string)))
+
 
       (defun xterm-dir (dir-as-string)
         (start-process-shell-command 
@@ -287,24 +287,33 @@
 (require 'clojure-mode)
 ; 
 ;;; slime
-;(add-to-list 'load-path "~/.hunix/opt/clj/slime")
-;(eval-after-load "slime"
-;   '(progn
-; ;     (setq slime-use-autodoc-mode nil)
-;      (slime-setup '(slime-repl
-; 		    slime-fancy
-; 		    slime-fuzzy
-; 		    slime-banner))
-;      (setq slime-complete-symbol*-fancy t)
-;      (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
-;
-;      (fset 'compile-and-goto-repl "\C-x\C-s\C-c\C-k\C-c\C-z")
-;      (global-set-key [f6] 'compile-and-goto-repl)
-;      ))
-; 
-;(defvar package-activated-list nil "Hack: used in `slime-changelog-date' but not defined anywhere")
-;
-;(require 'slime)
+(add-to-list 'load-path "~/.hunix/opt/clj/slime")
+(eval-after-load "slime"
+   '(progn
+ ;     (setq slime-use-autodoc-mode nil)
+      (slime-setup '(slime-repl
+ 		    slime-fancy
+ 		    slime-fuzzy
+ 		    slime-banner))
+      (setq slime-complete-symbol*-fancy t)
+      (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+
+      (fset 'compile-and-goto-repl "\C-x\C-s\C-c\C-k\C-c\C-z")
+      (global-set-key [f6] 'compile-and-goto-repl)
+      ))
+ 
+(defvar package-activated-list nil "Hack: used in `slime-changelog-date' but not defined anywhere")
+
+(require 'slime)
+
+;;; paredit
+(autoload 'paredit-mode "paredit"
+      "Minor mode for pseudo-structurally editing Lisp code." t)
+    (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+    (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+    (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+    (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
+    (add-hook 'clojure-mode-hook           (lambda () (paredit-mode +1)))
 
 ;;
 ;; markdown

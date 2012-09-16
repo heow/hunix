@@ -12,7 +12,7 @@ export CVS_RSH=ssh
 export CVSROOT=":pserver:heow@127.0.0.1:/usr/local/cvsroot"
 #export CVSROOT=":pserver:heow@cvshome.intdata.com:/cvs_files/repos"
 
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
 #
 # PATH
