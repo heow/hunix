@@ -9,9 +9,9 @@ fi
 export CLJ_PATH=${CLJ_HOME}/clojure.jar:${CLJ_ROOT}/lib/clojure-contrib.jar:${CLJ_ROOT}/lib/jline.jar
 
 # Add extra jars as specified by `.clojure` file
-if [ -f .clojure ]; then
-   CLJ_PATH=$CLJ_PATH:`cat .clojure`
-fi
+#if [ -f .clojure ]; then
+#   CLJ_PATH=$CLJ_PATH:`cat .clojure`
+#fi
 
 # current dir to CP
 CLJ_PATH=${CLJ_PATH}:${PWD}

@@ -1,6 +1,6 @@
 
 ;; hate that damn toolbar and menu
-(tool-bar-mode '0)
+;(tool-bar-mode '0)
 (menu-bar-mode '0)
 (mouse-wheel-mode '1)
 (show-paren-mode '1)
@@ -85,7 +85,7 @@
 (global-unset-key "\M-a")
 (global-set-key "\M-a" 'backward-char)
 
-;; set a better font for NT
+;; Windows
 ;(set-default-font "-*-Lucida Console-normal-r-*-*-11-82-96-96-c-*-iso8859-1")
 
 ;; speedbar
@@ -121,16 +121,11 @@
       (setq tramp-auto-save-directory "~/.emacs-backups")
       (setq auto-save-file-name-transforms '(("\\`/[^/]*:\\(.+/\\)*\\(.*\\)" "~/.emacs-backups")))  ))
 
-;; IDO
+;; IDO / IBS
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-
-;;
-;; much better buffer switching
-;;
 (require 'bs)
 (global-set-key "\C-x\C-b" 'bs-show)
 (setq bs-must-always-show-regexp "repl\\|shell")
@@ -138,8 +133,8 @@
 (global-set-key "\C-xb" 'ibs-select)
 
 ;;
-;; muse-el
-;; see http://www.emacswiki.org/cgi-bin/wiki/MuseMode
+;; muse
+;; http://www.emacswiki.org/cgi-bin/wiki/MuseMode
 ;;
 (require 'muse-mode nil t)
 (if (featurep 'muse-mode)
@@ -181,7 +176,6 @@
          "*scratch*" 
          (concat "~/.hunix/bin/br " dir-as-string)))
 
-
       (defun xterm-dir (dir-as-string)
         (start-process-shell-command 
          "browse-xterm" 
@@ -193,8 +187,8 @@
 ;;
 ;; eshell
 ;;
-(require 'eshell)
-(setq eshell-banner-message "Hacks and glory await!\n\n")
+;(require 'eshell)
+;(setq eshell-banner-message "Hacks and glory await!\n\n")
 ;(defun eshell-new ()
 ;  (interactive)
 ;  (eshell "eshell"))
@@ -281,7 +275,6 @@
 ;;; clojure
 ;;;
 
-
 ;;; clojure-mode
 ;(add-to-list 'load-path "~/.hunix/opt/clj/clojure-mode")
 (require 'clojure-mode)
@@ -364,22 +357,8 @@ by using nxml's indentation rules."
  '(vc-follow-symlinks t)
  '(version-control nil))
 
-
 (put 'downcase-region 'disabled nil)
-
 (put 'upcase-region 'disabled nil)
-
-;;
-;; start as server
-;;
-(server-start)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
@@ -390,3 +369,9 @@ by using nxml's indentation rules."
 ;    (load
 ;     (expand-file-name "~/.emacs.d/elpa/package.el"))
 ;  (package-initialize))
+
+;;
+;; always start as server
+;;
+(server-start)
+
