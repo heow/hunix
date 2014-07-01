@@ -1,6 +1,6 @@
 
 ;; hate that damn toolbar and menu
-;(tool-bar-mode '0)
+(tool-bar-mode '0)
 (menu-bar-mode '0)
 (mouse-wheel-mode '1)
 (show-paren-mode '1)
@@ -161,13 +161,13 @@
             '(
               ("CategoryPersonal"
                ("~/prj-personal/doc-wiki" :default "index")
-               (:base "html" :path "~/res/doc/wiki-personal")
-               (:base "pdf"  :path "~/res/doc/wiki-personal") )
+               (:base "html" :path "~/res/wiki-personal")
+               (:base "pdf"  :path "~/res/wiki-personal") )
 
               ("CategoryWork"
                ("~/prj-work/doc-wiki" :default "index")
-               (:base "html" :path "~/res/doc/wiki-work")
-               (:base "pdf"  :path "~/res/doc/wiki-work") )
+               (:base "html" :path "~/res/wiki-work")
+               (:base "pdf"  :path "~/res/wiki-work") )
               )) 
 
       (defun browse-dir (dir-as-string)
@@ -220,6 +220,13 @@
 ;(load "/opt/acl/acl62/eli/fi-site-init")
 
 ;;
+;; nrepl
+;; https://github.com/kingtim/nrepl.el
+;;
+(setq nrepl-popup-stacktraces nil) ; stop errors from popping up
+(add-hook 'nrepl-mode-hook 'paredit-mode) ; enable paredit for nrepl
+
+;;
 ;; slime/lisp
 ;; see http://cl-cookbook.sourceforge.net/.emacs
 ;;
@@ -244,9 +251,9 @@
 ;		("\\.clp$" . lisp-mode)
 ;		)auto-mode-alist))
 
-(require 'slime)
-(eval-after-load 'slime '(setq slime-protocol-version 'ignore))
-(slime-setup '(slime-repl))
+;(require 'slime)
+;(eval-after-load 'slime '(setq slime-protocol-version 'ignore))
+;(slime-setup '(slime-repl))
 (setq bs-must-always-show-regexp "repl\\|shell")
 
 ;(global-set-key [f11] 'run-lisp)
@@ -277,36 +284,36 @@
 
 ;;; clojure-mode
 ;(add-to-list 'load-path "~/.hunix/opt/clj/clojure-mode")
-(require 'clojure-mode)
+;(require 'clojure-mode)
 ; 
 ;;; slime
-(add-to-list 'load-path "~/.hunix/opt/clj/slime")
-(eval-after-load "slime"
-   '(progn
- ;     (setq slime-use-autodoc-mode nil)
-      (slime-setup '(slime-repl
- 		    slime-fancy
- 		    slime-fuzzy
- 		    slime-banner))
-      (setq slime-complete-symbol*-fancy t)
-      (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
-
-      (fset 'compile-and-goto-repl "\C-x\C-s\C-c\C-k\C-c\C-z")
-      (global-set-key [f6] 'compile-and-goto-repl)
-      ))
- 
-(defvar package-activated-list nil "Hack: used in `slime-changelog-date' but not defined anywhere")
-
-(require 'slime)
-
-;;; paredit
-(autoload 'paredit-mode "paredit"
-      "Minor mode for pseudo-structurally editing Lisp code." t)
-    (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
-    (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-    (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
-    (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
-    (add-hook 'clojure-mode-hook           (lambda () (paredit-mode +1)))
+;(add-to-list 'load-path "~/.hunix/opt/clj/slime")
+;(eval-after-load "slime"
+;   '(progn
+; ;     (setq slime-use-autodoc-mode nil)
+;      (slime-setup '(slime-repl
+; 		    slime-fancy
+; 		    slime-fuzzy
+; 		    slime-banner))
+;      (setq slime-complete-symbol*-fancy t)
+;      (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+;
+;      (fset 'compile-and-goto-repl "\C-x\C-s\C-c\C-k\C-c\C-z")
+;      (global-set-key [f6] 'compile-and-goto-repl)
+;      ))
+; 
+;(defvar package-activated-list nil "Hack: used in `slime-changelog-date' but not defined anywhere")
+;
+;(require 'slime)
+;
+;;;; paredit
+;(autoload 'paredit-mode "paredit"
+;      "Minor mode for pseudo-structurally editing Lisp code." t)
+;    (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+;    (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+;    (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+;    (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
+;    (add-hook 'clojure-mode-hook           (lambda () (paredit-mode +1)))
 
 ;;
 ;; markdown
@@ -341,14 +348,17 @@ by using nxml's indentation rules."
 ;; misc
 ;;
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(bs-must-always-show-regexp "lisp")
  '(column-number-mode t)
+ '(gud-gdb-command-name "gdb --annotate=1")
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(large-file-warning-threshold nil)
+ '(mu-worlds (quote (["Lambda" "lambda.moo.mud.org" 8888 "heow" "lambdanarf"])))
  '(ssh-host "localhost")
  '(ssh-program "/usr/bin/ssh")
  '(ssh-remote-user "heow")
@@ -375,3 +385,9 @@ by using nxml's indentation rules."
 ;;
 (server-start)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ ! -z "$1" ] ; then
+  HOST="$1"
+fi
+
+if [ ! -z "$2" ] ; then
+  LPORT="$2"
+  RPORT="$2"	
+else
+  echo "tunnel-wrapper {HOST} {PORT}"
+  exit 1
+fi
+
+if [ ! -z "$3" ] ; then
+  LPORT=$2
+  RPORT=$3
+fi
+
+figlet $HOST
+ssh -x -C -L $LPORT:localhost:$RPORT $HOST
+figlet -f banner no carrier

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # tmux start-server
-#tmux new-session -d -s hunx-desktop -n main
+#tmux new-session -d -s hunix-desktop -n main
 #tmux new-window -t hunix-desktop:1 -n display
 #tmux new-window -t hunix-desktop:2 -n servers
 #tmux new-window -t hunix-desktop:3 -n logs

@@ -2,7 +2,11 @@
 ssh-add
 
 #export USRHOST="heow@lispnyc.org"
-export USRHOST="hgoodman@208.72.159.219" 
+#export USRHOST="hgoodman@208.72.159.219" 
+export USRHOST="heow@vps" 
+
+restart-sh.sh 3 "ssh -C -N -D 1080 ${USRHOST}" &
+exit
 
 #
 # agi email

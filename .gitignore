@@ -1,3 +1,5 @@
 /opt/
 .DS_Store
 etc/host-confs/headless/dotfiles-home/.eshell/lastdir
+etc/host-confs/headless/dotfiles-home/.eshell/history
+etc/aws.properties

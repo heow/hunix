@@ -1,14 +1,21 @@
 #!/bin/bash
 
-# make it go bing!
-if which beep > /dev/null 2>&1 ; then
-    beep
-fi
+# terminal beep
+/usr/bin/printf "\a" > /dev/null
 
-# tell us remotely
-if which wget > /dev/null 2>&1 ; then
-    wget -o /dev/null -O /dev/null -b "http://www.alphageeksinc.com/msg?txt=$*" > /dev/null 2>&1
-fi
+# make it go beep
+beep > /dev/null 2>&1
+
+# make it say beep
+say "$*" > /dev/null 2>&1
+
+## tell us remotely
+#if which wget > /dev/null 2>&1 ; then
+#    wget -o /dev/null -O /dev/null -b "http://www.alphageeksinc.com/msg?txt=$*" > /dev/null 2>&1
+#fi
+
+# publish to SMS
+sns-publish arn:aws:sns:us-east-1:642599173691:notify-heow --message "$*" > /dev/null 2>&1
 
 # osx?
 if [ -d "/Applications/terminal-notifier.app/" ]; then

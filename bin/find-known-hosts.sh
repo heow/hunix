@@ -33,7 +33,7 @@ echo "Using MAC addresses from ${ETCFILE}"
 
 # ping our local network
 export LOCALNET=`myip.sh | cut -f 1-3 -d "."`
-fping -g "${LOCALNET}.0/24" 2> /dev/null 
+fping -g "${LOCALNET}.0/24" 2> /dev/null | grep alive
 
 # check the arp table for the known MACs
 while read LINE ; do
@@ -47,14 +47,14 @@ while read LINE ; do
     if [ -z "$IP" ] ; then
         continue
     fi
-    echo "found `echo $HOSTS | cut -d " " -f 1` as $IP"
+    echo -n "found `echo $HOSTS | cut -d " " -f 1` as $IP "
 
     if [ "1" == "$ROOT" ]; then
-        echo "adding to /etc/hosts"
         add-to-etc-hosts.sh $IP $HOSTS
+        echo "added to /etc/hosts"
     else
-        echo "adding to .ssh/config"
         add-to-ssh-config.sh $IP $HOSTS
+        echo "added to .ssh/config"
     fi
 done < $ETCFILE
 
