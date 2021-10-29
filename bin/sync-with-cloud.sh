@@ -6,9 +6,9 @@
 
 echo "START synchronize cloud"
 
-echo "laptop ---> github    ~/.hunix/bin"
-yadm add ~/.hunix/bin       # catches additions
-yadm commit -a -m "daily sync"; yadm push
+#echo "laptop ---> github    ~/.hunix/bin"
+#yadm add ~/.hunix/bin       # catches additions
+#yadm commit -a -m "daily sync"; yadm push
 
 echo "laptop <--- gdrive    resources"
 rclone --verbose copy heowbert-gdrive-read:/resources   ~/resources --filter="- /wiki-journal/"
