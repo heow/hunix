@@ -6,6 +6,12 @@ else
   targetdir=$1
 fi
 
+if which thunar > /dev/null 2>&1 ; then
+  thunar "$targetdir" &
+  exit
+fi
+
+# osx
 if which open > /dev/null 2>&1 ; then
   open "$targetdir"
   exit
@@ -37,6 +43,12 @@ fi
 #kfmclient folder file:$PWD > /dev/null 2>&1 &
 #gmc . > /dev/null 2>&1 &
 #konqueror . > /dev/null 2>&1 &
+
+# mate
+if which caja > /dev/null 2>&1 ; then
+  caja $targetdir &
+  exit
+fi
 
 echo "no worthy file-manager found"
 exit 1

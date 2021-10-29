@@ -1,0 +1,11 @@
+#!/usr/bin/picolisp
+
+(prinl 
+   (let
+      (exp-days  (* 365.25 75.5)                 # us male expected days
+       days-old  (- (date) (date (1969 3 26))) ) # H's bday
+      (pack
+         "The Huniverse is " days-old " days old, "
+         "expiration in " (- exp-days days-old) " days " # TODO exp date is wrong!
+         "(" (- 100 (*/ 100 days-old exp-days)) "% remaining)" ) ) )
+(bye)

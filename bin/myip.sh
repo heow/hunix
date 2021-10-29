@@ -1,8 +1,9 @@
 #!/bin/bash
 namestr=`uname`
 if [[ "$namestr" == 'Linux' ]]; then
-  /sbin/ifconfig |grep "inet addr:"|cut -f2 -d:|awk '{print $1}'|grep -v 127.0.0.1
-  exit
+    hostname -I | cut -f 1 -d " "
+    #ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+    exit
 fi
 
 # osx

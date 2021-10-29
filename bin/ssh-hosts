@@ -1,0 +1,2 @@
+#!/bin/sh
+grep -i "host " ~/.ssh/config | grep -v "#" | cut -f 2 -d " " | sort | uniq
