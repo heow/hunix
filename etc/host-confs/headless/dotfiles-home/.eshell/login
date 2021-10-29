@@ -1,5 +1,0 @@
-(progn
-;  (setq eshell-prefer-lisp-functions t) 
-;  (setq eshell-prefer-lisp-variables t) 
-  (setq eshell-ask-to-save-history nil)
-)
