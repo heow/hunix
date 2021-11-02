@@ -15,5 +15,3 @@ You know you're doing things right when your scripts keep getting imported into 
 ```
 bash <(curl -s https://raw.githubusercontent.com/heow/hunix/master/bin/get-hunix.sh)
 ```
-
-
