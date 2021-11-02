@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BIN=${HOME}/.local/bin/
+
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -10,19 +12,30 @@ add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
 }
 
-cd $HOME
+cd ${HOME}
 if [ -d "${HOME}/.hunix" ] ; then
   echo "hunix is already installed"
   exit 1
 fi
 
+# ensure giant rsa keys
+if [ ! -f "${HOME}/.ssh/id_rsa.pub" ]; then
+    echo "generating big rsa key"
+    mkdir ${HOME}/.ssh 2>/dev/null
+    ssh-keygen -t rsa -b 4096 -f ${HOME}/.ssh/id_rsa -q -N ""
+    chmod 700 ${HOME}/.ssh
+    chmod 600 ${HOME}/.ssh/*
+fi
+
 echo ""
 echo -n "Are you Heow? (y/n) "
-read YN
+read ISHUBERT
 
 # am I heow?
-if [ "$YN" == "y" ]; then
-    git clone git@github.com:heow/hunix.git .hunix
+if [ "$ISHUBERT" == "y" ]; then
+    echo 'LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQ21GbGN6STFOaTFqZEhJQUFBQUdZbU55ZVhCMEFBQUFHQUFBQUJDYmhGdlJGcwp4TXhSS21CZmVqeTJVaEFBQUFFQUFBQUFFQUFBQXpBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJTVQ1dzJMejJKY1FSd2Y3CjVLSFVaZjRoVGJIYWRraWd3WGlnVmNBbUU1UURBQUFBa0I4Q2RpbGxsc0h6S1hlQ01XMHIra2xEdFZ5VkNzbmlWczNZbWoKQ1FsV0ZxT0U5ZE5BbElzUy9OS3F5Zm51cU9Ga0NlOE1JYWZjanV6R3hHUTRtTHczSWdMNlg2Z0tmaHFlcHlwbVVXK1JPOApDRUJBVk5KckFHeG9MRlhCUEZuTElHNUs5ZTdheWcyRHVhQ045Snc1L081SGVKUUl1bFdCOXk1TTFCMmY5RTNoM3RoeVhtCllDSG5sQUVDSWFEays0T0E9PQotLS0tLUVORCBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0K' | base64 --decode > ${HOME}/.ssh/github-access-2021
+    chmod 600 ${HOME}/.ssh/github-access-2021
+    GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/github-access-2021" git clone git@github.com:heow/hunix.git .hunix
 else
     git clone https://github.com/heow/hunix.git .hunix
 fi
@@ -35,32 +48,40 @@ ln -s ${HOME}/.hunix/* ${HOME}/.local/
 pathadd ${HOME}/.local/bin
 export $PATH
 
-# ensure giant rsa keys
-if [ ! -f "$HOME/.ssh/id_rsa.pub" ]; then
-    echo "generating big rsa key"
-    ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa -q -N ""
-fi
+if [ "$ISHUBERT" == "y" ]; then
+    # yadm
+    if [ ! which yadm > /dev/null 2>&1 ] ; then
+        echo "installing yadm..."
+        sudo apt-get install yadm
+    fi
 
-# yadm
-if [ ! which yadm > /dev/null 2>&1 ] ; then
-    echo "installing yadm..."
-    sudo apt-get install yadm
-fi
+    echo 'LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQ21GbGN6STFOaTFqZEhJQUFBQUdZbU55ZVhCMEFBQUFHQUFBQUJDM3l3dUFqSQpYUlZzSW5GWERSUW1LQ0FBQUFFQUFBQUFFQUFBQXpBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJRW1NdkVqUmN0WTBiMUFRCk84ZGpPamxSMFhETzBZeDQvdWFwN0lyWVc1aW9BQUFBb0ttNU9aU3FybDVxVndwcEFWaVdFYWN6YXB6aHNUaXoxT1A5N2wKaUQrWURNQmtRMHNyNnh1ckRFUmRvTDZNSzJ4QkZSbzI2RVdJVzA0cXF0NThRREh5WWNiYXQ2MnFKU1RscDBUcTNPdkRwego4Z3hIN2xJRnNBQmlxNWZlSmkxaDhKTGVYTUs3U2VqZElYNkJXUnZOQnhpZ1dvanF1UEYvRy9HZE9jaFdkbkVZT3NlSy9CCnVnT0QyZllpeG9OdU9iekhtODYwZEdQUVJHVUtMWnlYYVJWd1U9Ci0tLS0tRU5EIE9QRU5TU0ggUFJJVkFURSBLRVktLS0tLQo=' | base64 --decode > ${HOME}/.ssh/yadm-access-2021
+    chmod 600 ${HOME}/.ssh/yadm-access-2021
+    GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/yadm-access-2021" yadm  clone git@gitlab.com:heow/yadm.git
 
-echo "cloning yadm"
-yadm clone git@gitlab.com:heow/yadm.git
+    echo "cloning yadm"
+    yadm clone git@gitlab.com:heow/yadm.git
+
+    echo ""
+    echo -n "Decrypt YADM secrets? (y/n) "
+    read YN
+
+    if [ "$YN" == "y" ]; then
+        yadm decrypt
+    fi
+fi
 
 echo ""
-echo -n "Decrypt YADM secrets? (y/n) "
+echo -n "Install large x86 binaries? (y/n) "
 read YN
 
 if [ "$YN" == "y" ]; then
-    yadm decrypt
+    echo "installing..."
+else
+    exit
 fi
 
-BIN=${HOME}/.local/bin/
-
-if [ ! -d "${HOME}/.hunix" ] ; then
+if [ ! -d "${HOME}/.linuxbrew" ] ; then
     echo "installing homebrew"
     pushd ${HOME}
     git clone https://github.com/Homebrew/brew .linuxbrew
@@ -102,9 +123,11 @@ rm ngrok-stable-linux-amd64.zip
 add_gitignore ngrok
 popd
 
-
 exit
 
+#
+# pre-yadm logic
+#
 echo ""
 echo "Linking hostfiles to $HOME directory, which system?"
 echo "(type in the name or 'all')"
