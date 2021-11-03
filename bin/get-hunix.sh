@@ -8,6 +8,7 @@ pathadd() {
 
 BIN=${HOME}/.local/bin/
 mkdir -p ${BIN} 2>/dev/null
+touch ${BIN}/.gitignore
 
 add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
