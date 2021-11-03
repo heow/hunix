@@ -16,19 +16,19 @@ rclone --verbose copy heowbert-gdrive-read:/resources   ~/resources --filter="- 
 exit
 
 echo "laptop <--- gdrive    resources/livescribe"
-rclone --verbose copy ata-gdrive-read:/Livescribe+ ~/resources/livescribe
+rclone --verbose copy gdrive-read:/Livescribe+ ~/resources/livescribe
 
 echo "laptop <--- gdrive    projects-active"
-rclone --verbose copy ata-gdrive-read:/projects-active ~/projects-active
+rclone --verbose copy gdrive-read:/projects-active ~/projects-active
 
 echo "laptop <--- gdrive    projects-areas"
-rclone --verbose copy ata-gdrive-read:/projects-areas ~/projects-areas
+rclone --verbose copy gdrive-read:/projects-areas ~/projects-areas
 
 echo "laptop <--- gdrive    zzz-archive"
-rclone --verbose copy ata-gdrive-read:/zzz-archive ~/zzz-archive
+rclone --verbose copy gdrive-read:/zzz-archive ~/zzz-archive
 
 echo "laptop ---> gdrive    ~/resources/wiki-journal"
-rclone --verbose copy ~/resources/wiki-journal ata-gdrive-write:/resources/wiki-journal --filter="- .git/" --filter="- .gitignore"
+rclone --verbose copy ~/resources/wiki-journal gdrive-write:/resources/wiki-journal --filter="- .git/" --filter="- .gitignore"
 
 echo "laptop <--- github    ATALLC/tcb.git"
 pushd ~/resources/tcb
@@ -36,7 +36,7 @@ git pull
 popd
 
 echo "laptop ---> gdrive    ~/resources/tcb"
-rclone --verbose copy ~/resources/tcb ata-gdrive-write:/resources/tcb --filter="- .git/" --filter="- .gitignore"
+rclone --verbose copy ~/resources/tcb gdrive-write:/resources/tcb --filter="- .git/" --filter="- .gitignore"
 
 echo "laptop ---> github    ~/resources/wiki-journal"
 FILES=~/resources/wiki-journal/
@@ -47,12 +47,12 @@ popd
 figlet UNTRACKED
 # info only
 echo "UNTRACKED resources"
-rclone --dry-run --verbose copy ~/resources/      ata-gdrive-read:/resources --filter="- /wiki-journal/" --filter="- /livescribe/" --filter="- /tcb/" 2>&1 | grep NOTICE | grep -v symlink
+rclone --dry-run --verbose copy ~/resources/      gdrive-read:/resources --filter="- /wiki-journal/" --filter="- /livescribe/" --filter="- /tcb/" 2>&1 | grep NOTICE | grep -v symlink
 
 echo "UNTRACKED projects-active"
-rclone --dry-run --verbose copy ~/projects-active ata-gdrive-read:/projects-active 2>&1 | grep NOTICE | grep -v symlink
+rclone --dry-run --verbose copy ~/projects-active gdrive-read:/projects-active 2>&1 | grep NOTICE | grep -v symlink
 
 echo "UNTRACKED projects-areas"
-rclone --dry-run --verbose copy ~/projects-areas  ata-gdrive-read:/projects-areas  2>&1 | grep NOTICE | grep -v symlink
+rclone --dry-run --verbose copy ~/projects-areas  gdrive-read:/projects-areas  2>&1 | grep NOTICE | grep -v symlink
 
 echo "STOP"
