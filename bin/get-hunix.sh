@@ -61,6 +61,10 @@ if [ "$ISHUBERT" == "y" ]; then
         sudo apt-get install yadm
     fi
 
+    echo "make backward compatible with old yadm"
+    mkdir -p ${HOME}/.config/yadm
+    ln -s ${HOME}/.config/yadm ${HOME}/.yadm 
+
     echo "cloning yadm..."
     GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/yadm-access-2021" yadm  clone git@gitlab.com:heow/yadm.git
 
