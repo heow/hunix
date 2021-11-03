@@ -54,7 +54,7 @@ if [ "$ISHUBERT" == "y" ]; then
     chmod 600 ${HOME}/.ssh/yadm-access-2021
 
     # yadm
-    if [ which yadm > /dev/null 2>&1 ] ; then
+    if  which yadm > /dev/null 2>&1 ; then
         echo "yadm ok"
     else
         echo "installing yadm..."
@@ -73,7 +73,7 @@ if [ "$ISHUBERT" == "y" ]; then
 
     if [ "$YN" == "y" ]; then
         # dependency
-        if [ which gpg > /dev/null 2>&1 ] ; then
+        if which gpg > /dev/null 2>&1 ; then
             echo "gpg ok"
         else
             sudo apt-get install gpg
