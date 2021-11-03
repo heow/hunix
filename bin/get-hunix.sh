@@ -12,6 +12,9 @@ add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
 }
 
+# add self to bin/.gitignore, it's only for automation
+add_gitignore .gitignore
+
 cd ${HOME}
 if [ -d "${HOME}/.hunix" ] ; then
   echo "hunix is already installed"
@@ -46,7 +49,8 @@ mkdir -p ${HOME}/.local/log 2>/dev/null
 ln -s ${HOME}/.hunix/bin ${HOME}/.local/
 ln -s ${HOME}/.hunix/lib ${HOME}/.local/
 
-export $PATH=${PATH}:${HOME}/.local/bin
+pathadd ${HOME}/.local/bin
+export PATH
 
 if [ "$ISHUBERT" == "y" ]; then
 
@@ -67,6 +71,9 @@ if [ "$ISHUBERT" == "y" ]; then
 
     echo "cloning yadm..."
     GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/yadm-access-2021" yadm  clone git@gitlab.com:heow/yadm.git
+
+    # add overlayed yadm files from ~/.local/bin to .gitignore
+    add_gitignore msg    
 
     echo -n "Decrypt YADM secrets? (y/n) "
     read YN
