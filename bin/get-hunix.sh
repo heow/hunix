@@ -1,12 +1,13 @@
 #!/bin/bash
 
-BIN=${HOME}/.local/bin/
-
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
+
+BIN=${HOME}/.local/bin/
+if [ ! -f ${BIN} ] ; then mkdir -p ${BIN} fi
 
 add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
