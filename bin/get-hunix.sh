@@ -43,10 +43,10 @@ fi
 # create and link to .local
 mkdir -p ${HOME}/.local/opt 2>/dev/null
 mkdir -p ${HOME}/.local/log 2>/dev/null
-ln -s ${HOME}/.hunix/* ${HOME}/.local/
+ln -s ${HOME}/.hunix/bin ${HOME}/.local/
+ln -s ${HOME}/.hunix/lib ${HOME}/.local/
 
-pathadd ${HOME}/.local/bin
-export $PATH
+export $PATH=${PATH}:${HOME}/.local/bin
 
 if [ "$ISHUBERT" == "y" ]; then
 
