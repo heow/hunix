@@ -49,24 +49,27 @@ pathadd ${HOME}/.local/bin
 export $PATH
 
 if [ "$ISHUBERT" == "y" ]; then
+
+    echo 'LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQ21GbGN6STFOaTFqZEhJQUFBQUdZbU55ZVhCMEFBQUFHQUFBQUJDM3l3dUFqSQpYUlZzSW5GWERSUW1LQ0FBQUFFQUFBQUFFQUFBQXpBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJRW1NdkVqUmN0WTBiMUFRCk84ZGpPamxSMFhETzBZeDQvdWFwN0lyWVc1aW9BQUFBb0ttNU9aU3FybDVxVndwcEFWaVdFYWN6YXB6aHNUaXoxT1A5N2wKaUQrWURNQmtRMHNyNnh1ckRFUmRvTDZNSzJ4QkZSbzI2RVdJVzA0cXF0NThRREh5WWNiYXQ2MnFKU1RscDBUcTNPdkRwego4Z3hIN2xJRnNBQmlxNWZlSmkxaDhKTGVYTUs3U2VqZElYNkJXUnZOQnhpZ1dvanF1UEYvRy9HZE9jaFdkbkVZT3NlSy9CCnVnT0QyZllpeG9OdU9iekhtODYwZEdQUVJHVUtMWnlYYVJWd1U9Ci0tLS0tRU5EIE9QRU5TU0ggUFJJVkFURSBLRVktLS0tLQo=' | base64 --decode > ${HOME}/.ssh/yadm-access-2021
+    chmod 600 ${HOME}/.ssh/yadm-access-2021
+
     # yadm
     if [ ! which yadm > /dev/null 2>&1 ] ; then
         echo "installing yadm..."
         sudo apt-get install yadm
     fi
 
-    echo 'LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQ21GbGN6STFOaTFqZEhJQUFBQUdZbU55ZVhCMEFBQUFHQUFBQUJDM3l3dUFqSQpYUlZzSW5GWERSUW1LQ0FBQUFFQUFBQUFFQUFBQXpBQUFBQzNOemFDMWxaREkxTlRFNUFBQUFJRW1NdkVqUmN0WTBiMUFRCk84ZGpPamxSMFhETzBZeDQvdWFwN0lyWVc1aW9BQUFBb0ttNU9aU3FybDVxVndwcEFWaVdFYWN6YXB6aHNUaXoxT1A5N2wKaUQrWURNQmtRMHNyNnh1ckRFUmRvTDZNSzJ4QkZSbzI2RVdJVzA0cXF0NThRREh5WWNiYXQ2MnFKU1RscDBUcTNPdkRwego4Z3hIN2xJRnNBQmlxNWZlSmkxaDhKTGVYTUs3U2VqZElYNkJXUnZOQnhpZ1dvanF1UEYvRy9HZE9jaFdkbkVZT3NlSy9CCnVnT0QyZllpeG9OdU9iekhtODYwZEdQUVJHVUtMWnlYYVJWd1U9Ci0tLS0tRU5EIE9QRU5TU0ggUFJJVkFURSBLRVktLS0tLQo=' | base64 --decode > ${HOME}/.ssh/yadm-access-2021
-    chmod 600 ${HOME}/.ssh/yadm-access-2021
+    echo "cloning yadm..."
     GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/yadm-access-2021" yadm  clone git@gitlab.com:heow/yadm.git
 
-    echo "cloning yadm"
-    yadm clone git@gitlab.com:heow/yadm.git
-
-    echo ""
     echo -n "Decrypt YADM secrets? (y/n) "
     read YN
 
     if [ "$YN" == "y" ]; then
+        # dependency
+        if [ ! which gpg > /dev/null 2>&1 ] ; then
+            sudo agpt-get install gpg
+        fi
         yadm decrypt
     fi
 fi
