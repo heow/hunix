@@ -7,15 +7,10 @@ pathadd() {
 }
 
 BIN=${HOME}/.local/bin/
-mkdir -p ${BIN} 2>/dev/null
-touch ${BIN}/.gitignore
 
 add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
 }
-
-# add self to bin/.gitignore, it's only for automation
-add_gitignore .gitignore
 
 cd ${HOME}
 if [ -d "${HOME}/.hunix" ] ; then
@@ -50,6 +45,12 @@ mkdir -p ${HOME}/.local/opt 2>/dev/null
 mkdir -p ${HOME}/.local/log 2>/dev/null
 ln -s ${HOME}/.hunix/bin ${HOME}/.local/
 ln -s ${HOME}/.hunix/lib ${HOME}/.local/
+
+touch ${BIN}/.gitignore
+
+# add self to bin/.gitignore, it's only for automation
+add_gitignore .gitignore
+
 
 pathadd ${HOME}/.local/bin
 export PATH
