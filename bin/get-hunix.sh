@@ -7,7 +7,7 @@ pathadd() {
 }
 
 BIN=${HOME}/.local/bin/
-if [ ! -f "${BIN}" ]; then mkdir -p ${BIN} fi
+mkdir -p ${BIN} 2>/dev/null
 
 add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
