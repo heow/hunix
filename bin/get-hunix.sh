@@ -72,7 +72,7 @@ if [ "$ISHUBERT" == "y" ]; then
         if [ which gpg > /dev/null 2>&1 ] ; then
             echo "gpg ok"
         else
-            sudo agpt-get install gpg
+            sudo apt-get install gpg
         fi
         yadm decrypt
     fi
