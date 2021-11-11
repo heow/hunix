@@ -1,5 +1,5 @@
-#!/bin/bash
-
+#!/bin/bash 
+   
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
@@ -14,8 +14,28 @@ add_gitignore () {
 
 cd ${HOME}
 if [ -d "${HOME}/.hunix" ] ; then
-  echo "hunix is already installed"
+    echo "hunix is already installed"
+    echo "  nuke and pave with get-hunix.sh nuke"
+    if [[ "nuke" == "$1" ]]; then
+        echo "nukeing hunix install..."
+        rm -rf .hunix .yadm .config/yadm .local/bin .local/lib .local/etc /tmp/tmp_unzip* .emacs-site-lisp .bash_aliases .bash_profile .emacs .tmux.conf
+    fi
   exit 1
+fi
+
+# base dependencies
+if  which curl > /dev/null 2>&1 ; then
+    echo "curl ok"
+else
+    echo "installing curl..."
+    sudo apt-get install curl
+fi
+
+if  which git > /dev/null 2>&1 ; then
+    echo "git ok"
+else
+    echo "installing git..."
+    sudo apt-get install git
 fi
 
 # ensure giant rsa keys
@@ -102,27 +122,70 @@ else
     exit
 fi
 
-if [ ! -d "${HOME}/.linuxbrew" ] ; then
-    echo "installing homebrew"
-    pushd ${HOME}
-    git clone https://github.com/Homebrew/brew .linuxbrew
-    eval "$(.linuxbrew/bin/brew shellenv)"
-    brew update --force --quiet
-    chmod -R go-w "$(brew --prefix)/share/zsh"
-    popd
+if  which rclone > /dev/null 2>&1 ; then
+    echo "rclone ok"
 else
-    # ensure env
-    eval "$(.linuxbrew/bin/brew shellenv)"
+    echo "installing rclone..."
+    OS="$(uname)"
+    case $OS in
+      Linux)
+        OS='linux'
+        ;;
+      FreeBSD)
+        OS='freebsd'
+        ;;
+      NetBSD)
+        OS='netbsd'
+        ;;
+      OpenBSD)
+        OS='openbsd'
+        ;;  
+      Darwin)
+        OS='osx'
+        ;;
+      SunOS)
+        OS='solaris'
+        echo 'OS not supported'
+        exit 2
+        ;;
+      *)
+        echo 'OS not supported'
+        exit 2
+        ;;
+    esac
+    OS_type="$(uname -m)"
+    case "$OS_type" in
+      x86_64|amd64)
+        OS_type='amd64'
+        ;;
+      i?86|x86)
+        OS_type='386'
+        ;;
+      aarch64|arm64)
+        OS_type='arm64'
+        ;;
+      arm*)
+        OS_type='arm'
+        ;;
+      *)
+        echo 'OS type not supported'
+        exit 2
+        ;;
+    esac
+    download_link="https://downloads.rclone.org/rclone-current-${OS}-${OS_type}.zip"
+    rclone_zip="rclone-current-${OS}-${OS_type}.zip"
+    curl -OfsS "$download_link"
+    unzip_dir="/tmp/tmp_unzip_dir_for_rclone"
+    mkdir "$unzip_dir"
+    unzip -a "$rclone_zip" -d "$unzip_dir"
+    pushd $unzip_dir/*
+    mv rclone ~/.local/bin/
+    popd
+    add_gitignore rclone
 fi
 
-echo "rclone (50MB)"
-brew install rclone
-cp -L .linuxbrew/bin/rclone ${BIN}/
-add_gitignore rclone
-
 echo "logseq (100MB)"
-wget https://github.com/logseq/logseq/releases/download/0.4.4/logseq-linux-x64-0.4.4.AppImage
-mv logseq-linux-x64-0.4.4.AppImage ${BIN}/logseq
+curl https://github.com/logseq/logseq/releases/download/0.4.4/logseq-linux-x64-0.4.4.AppImage --output ${BIN}/logseq
 chmod +x ${BIN}/logseq
 add_gitignore logseq
 
@@ -137,8 +200,8 @@ popd
 
 echo "ngrok (33MB)"
 pushd /tmp
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip
+curl https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip
+unzip ngrok.zip
 mv ngrok ${BIN}/ngrok
 rm ngrok-stable-linux-amd64.zip
 add_gitignore ngrok
