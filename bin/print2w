@@ -1,3 +1,0 @@
-#!/bin/ksh
-PLUSOPTS="+duplex +2perpage +landscape"
-. printcode -nonums $@
