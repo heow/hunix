@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@ika:/mnt/disk1/heow $HOME/mnt/ika-heow

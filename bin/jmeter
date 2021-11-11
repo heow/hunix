@@ -1,4 +1,0 @@
-#!/bin/bash
-pushd ~/.hunix/opt/jmeter/bin/
-./jmeter
-popd

@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@tako:/home/heow ~/mnt/tako/

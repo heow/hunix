@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@vm1.i.fm:/home/heow /home/heow/mnt/vm1-home

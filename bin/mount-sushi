@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs user@sushi:/home/user /home/heow/mnt/sushi

@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@buta:/home/heow $HOME/mnt/buta-heow

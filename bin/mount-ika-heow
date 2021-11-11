@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@ika:/home/heow /home/heow/mnt/ika-heow-home

@@ -1,2 +1,0 @@
-#!/bin/sh
-sshfs heow@fipsvm1.intdata.com:/var/local /home/heow/mnt/vm1-varlocal
