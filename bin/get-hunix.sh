@@ -1,5 +1,18 @@
 #!/bin/bash 
-   
+
+#
+#  .hunix/
+#    |-- bin
+#    `-- lib
+#  .local/
+#    |-- bin -> ~/.hunix/bin
+#    |-- etc
+#    |   `-- archive
+#    |-- lib -> ~/.hunix/lib
+#    |-- log
+#    `-- opt
+#
+
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH="${PATH:+"$PATH:"}$1"
