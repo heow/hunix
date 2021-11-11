@@ -96,7 +96,8 @@ if [ "$ISHUBERT" == "y" ]; then
     GIT_SSH_COMMAND="ssh -i ${HOME}/.ssh/yadm-access-2021" yadm  clone git@gitlab.com:heow/yadm.git
 
     # add overlayed yadm files from ~/.local/bin to .gitignore
-    add_gitignore msg    
+    add_gitignore msg
+    add_gitignore sync-with-cloud.sh
 
     echo -n "Decrypt YADM secrets? (y/n) "
     read YN
