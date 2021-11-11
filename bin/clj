@@ -1,24 +1,12 @@
 #!/bin/sh
 
+# the new clojure wrapper supplants 90% of this
+
 # are we in leiningen?
 if [ -f project.clj ]; then
     lein repl
     exit
 fi
 
-#export CLJ_PATH=${CLJ_HOME}/clojure.jar:${CLJ_ROOT}/lib/clojure-contrib.jar:${CLJ_ROOT}/lib/jline.jar
-
-# Add extra jars as specified by `.clojure` file
-#if [ -f .clojure ]; then
-#   CLJ_PATH=$CLJ_PATH:`cat .clojure`
-#fi
-
 # current dir to CP
-CLJ_PATH=${CLJ_PATH}:${PWD}
-
-if [ -z "$1" ]; then
-   java -server -cp $CLJ_PATH \
-        jline.ConsoleRunner clojure.main
-else
-   java -server -cp $CLJ_PATH clojure.main -i $*
-fi
+clojure -cp ${CLASSPATH}:${PWD} "$@"
