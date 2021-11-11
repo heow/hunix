@@ -1,4 +1,0 @@
-#!/bin/bash
-pushd ~/.hunix/opt/eclipse/
-./eclipse &
-popd

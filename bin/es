@@ -1,2 +1,2 @@
 #!/bin/sh
-emacs -fn 7x10 -f shell
+emacs -fn 6x10 -f shell
