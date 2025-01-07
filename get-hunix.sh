@@ -3,10 +3,11 @@
 #
 #  .local/
 #    |-- bin
-#    |-- etc
-#    |-- lib
-#    |-- log
-#    `-- opt
+#  .bash_profile     -> ~/.local/bin/etc-dotfiles/.bash_profile
+#  .bash_aliases     -> ~/.local/bin/etc-dotfiles/.bash_aliases
+#  .emacs            -> ~/.local/bin/etc-dotfiles/.emacs
+#  .emacs-site-lisp  -> ~/.local/bin/etc-dotfiles/.emacs-site-lisp
+#  .tmux.conf        -> ~/.local/bin/etc-dotfiles/.tmux-conf
 #
 
 pathadd() {
@@ -28,7 +29,7 @@ if [ -f "${HOME}/.local/bin/.gitignore" ] ; then
     exit 1
 fi
 
-# base dependencies
+# dependencies
 if  which curl > /dev/null 2>&1 ; then
     echo "curl ok"
 else
@@ -43,51 +44,11 @@ else
     sudo apt-get install git
 fi
 
-# clone read-only
+# clone from repo read-only into ~/.local/bin
 git clone https://github.com/heow/hunix.git ${HOME}/.local/bin
 
-exit 0
-
-# create and link to .local
-mkdir -p ${HOME}/.local/opt 2>/dev/null
-mkdir -p ${HOME}/.local/log 2>/dev/null
-ln -s ${HOME}/.hunix/bin ${HOME}/.local/
-ln -s ${HOME}/.hunix/lib ${HOME}/.local/
-
-touch ${BIN}/.gitignore
-
-# add self to bin/.gitignore, it's only for automation
-add_gitignore .gitignore
-
+# symlink the dotfiles to home
+ln2home.sh ~/.local/bin/etc-dotfiles/
 
 pathadd ${HOME}/.local/bin
 export PATH
-
-#
-# pre-yadm logic
-#
-echo ""
-echo "Linking hostfiles to $HOME directory, which system?"
-echo "(type in the name or 'all')"
-ls -1 ./etc/host-confs
-read SYSTYPE
-if [ "$SYSTYPE" == "all" ]; then
-  SYSTYPE=`ls -1 ./etc/host-confs`
-fi
-
-for SYS in $SYSTYPE; do
-  cd $HOME/.hunix/etc/host-confs >> /dev/null 2>&1
-  cd ./$SYS/dotfiles-home
-  echo ""
-  echo "$SYS files and directories:"
-  ls -pd .*  | grep -v "\./"
-  echo -n "copy or link the above files to $HOME? (cp/ln) "
-  read CPLN
-  if [ "$CPLN" == "ln" ]; then
-    echo "linking..."
-    ~/.hunix/bin/ln2home.sh
-  else
-    echo "copying..."
-    ~/.hunix/bin/cp2home.sh
-  fi
-done
