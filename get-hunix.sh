@@ -17,7 +17,9 @@ pathadd() {
 }
 
 BIN=${HOME}/.local/bin/
-mkdir -p ${HOME}/.local/bin 2>/dev/null
+mkdir -p ${BIN} 2>/dev/null
+pathadd ${BIN}
+export PATH
 
 add_gitignore () {
     grep -qxF $1 ${BIN}.gitignore || echo "$1" >> ${BIN}.gitignore
@@ -48,7 +50,4 @@ fi
 git clone https://github.com/heow/hunix.git ${HOME}/.local/bin
 
 # symlink the dotfiles to home
-ln2home.sh ~/.local/bin/etc-dotfiles/
-
-pathadd ${HOME}/.local/bin
-export PATH
+~/.local/bin/ln2home.sh ~/.local/bin/etc-dotfiles/
