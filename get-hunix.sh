@@ -27,8 +27,9 @@ add_gitignore () {
 
 cd ${HOME}
 if [ -f "${HOME}/.local/bin/.gitignore" ] ; then
-    echo "hunix is already installed, exiting."
-    exit 1
+    echo "hunix is already installed, updating"
+    git pull
+    exit 0
 fi
 
 # dependencies

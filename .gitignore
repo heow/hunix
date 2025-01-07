@@ -1,2 +1,6 @@
-/opt/
+# hand-installed GUIs
+[A-Z]*
+*.AppImage
 
+# large binaries
+bb
