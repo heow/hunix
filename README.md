@@ -12,7 +12,7 @@ You know you're doing things right when your scripts keep getting imported into 
 ### Getting Started
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/heow/hunix/master/bin/get-hunix.sh)
+bash <(curl -s https://raw.githubusercontent.com/heow/hunix/master/get-hunix.sh)
 ```
 
 Use hunix-bin/get-hunix.sh to bootstrap the system:
@@ -20,11 +20,11 @@ Use hunix-bin/get-hunix.sh to bootstrap the system:
     wget https://raw.github.com/heow/hunix-bin/master/get-hunix.sh
     /bin/bash ./get-hunix.sh
 
-Creates the following directory tree for user "alice" using GitHub:
+Creates the following directory tree:
 
-    /home/alice/.hunix
-                      /bin
-                      /etc
-                      /opt
-
-
+    .local/bin
+    .bash_profile     -> ~/.local/bin/etc-dotfiles/.bash_profile
+    .bash_aliases     -> ~/.local/bin/etc-dotfiles/.bash_aliases
+    .emacs            -> ~/.local/bin/etc-dotfiles/.emacs
+    .emacs-site-lisp  -> ~/.local/bin/etc-dotfiles/.emacs-site-lisp
+    .tmux.conf        -> ~/.local/bin/etc-dotfiles/.tmux-conf
