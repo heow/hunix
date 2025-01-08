@@ -1,12 +1,32 @@
-#!/bin/bash
-
 #
 # Mostly user interface and quality of life modifications to the terminal
 #
-#
+# assumning a bash Debian-ish distro
+# 
 
 # path, env and umask are set in .bashrc
 source $HOME/.bashrc
+
+# note: most aliases were made into files so they could be run without readline
+
+alias lo='exit'
+alias pd='pushd'
+alias pd2='pushd +2'
+alias pd3='pushd +3'
+alias pd4='pushd +4'
+
+# ensure these work
+if ls --color=auto > /dev/null 2>&1; then
+    alias ls='ls --color=auto -F' # color and classify (append /)
+else
+    alias ls='ls -F' # classify (append /)
+fi
+
+# slightly different than the default in /etc/skel/.bashrc
+alias  l='ls -CF'             # colum
+alias la='ls -A'              # almost all (no ./ ../)
+alias ll='ls -lF'
+
 
 # run keychain
 if [ -f /usr/bin/keychain ]; then keychain --quiet ; fi
@@ -31,11 +51,7 @@ fi
 #export CDPATH=~/src:~/				# automagically cd to
 export FIGNORE=".o:~:.class:.gdoc:.git"  # dont expand for tab compeltion
 
-# bash history
-export HISTCONTROL=ignoreboth       # hist ignore dups and leading spaces
-export HISTCSIZE=5000               # 10x normal
-
-# editor
+# editor and pagers, I will die on this hill
 export ALTERNATE_EDITOR=emacs 
 export EDITOR=emacs
 export VISUAL=emacs
@@ -72,7 +88,9 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
    
-
+# this is so obscenely useful it is illegal in six states
+#   cd ...
+# and it lists files after a directory change
 cd() {
     if [ -n "$1" ]; then
     	case "$1" in
@@ -92,8 +110,10 @@ cd() {
 }
 
 if [ "1" = $(($RANDOM%2+1)) ]; then
+    if which huniversal-time > /dev/null ; then
 	echo
 	huniversal-time
+    fi
 else
     if which fortune > /dev/null ; then
         echo
@@ -101,25 +121,14 @@ else
     fi
 fi
 
+pathadd() {
+    echo "AAA"
+    echo "$PATH"
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH=${PATH//":$1"/} #delete any instances in the middle or at the end
+        PATH=${PATH//"$1:"/} #delete any instances at the beginning
+        PATH="$1:$PATH" # prepend
+    fi
+}
 
-export PATH=${HOME}/.local/bin:${PATH}
-
-# most aliases were made into files so they could be run without readline
-alias lo='exit'
-alias bye='exit'
-alias pd='pushd'
-alias pd2='pushd +2'
-alias pd3='pushd +3'
-alias pd4='pushd +4'
-
-# ensure these work
-if ls --color=auto > /dev/null 2>&1; then
-    alias ls='ls --color=auto -F' # color and classify (append /)
-else
-    alias ls='ls -F' # classify (append /)
-fi
-
-alias  l='ls -C'              # colum
-alias la='ls -A'              # almost all (no ./ ../)
-alias ll='ls -l'
-alias lo='exit'
+pathadd "${HOME}/.local/bin"
