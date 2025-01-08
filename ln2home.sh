@@ -13,13 +13,12 @@ for f in ${targetdir}/.[abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVWXYZ]*; 
     if [ -h "${HOME}/${shortfile}" ]; then     # file exists and is a symlink?
         echo "already symlinked  ${shortfile}"
     elif [ -d "${HOME}/${shortfile}" ]; then   # file exists and is a dir?
-        echo "link dir y/n       ${HOME}/${shortfile}"
-        ~/.hunix/bin/rmd ${HOME}/${shortfile}
+        echo "link dir           ${HOME}/${shortfile}"
         if [ ! -d "${HOME}/${shortfile}" ]; then
             ln -i -s $f ${HOME}/${shortfile}
         fi
     elif [ -f "${HOME}/${shortfile}" ]; then     # file exists and is a file?
-        echo "link file  y/n     ${HOME}/${shortfile}"
+        echo "link file          ${HOME}/${shortfile}"
         ln -i -s $f ${HOME}/${shortfile}
     elif [ ".svn" == "${shortfile}" ]; then
         echo "ignore             ${shortfile}"
