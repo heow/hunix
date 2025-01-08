@@ -1,5 +1,9 @@
 #!/bin/sh
 
+exit
+
+# TODO make it non-destructive
+
 if [ -z $1 ]; then
   targetdir=$PWD
 else
