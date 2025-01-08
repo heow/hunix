@@ -122,8 +122,6 @@ else
 fi
 
 pathadd() {
-    echo "AAA"
-    echo "$PATH"
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH=${PATH//":$1"/} #delete any instances in the middle or at the end
         PATH=${PATH//"$1:"/} #delete any instances at the beginning
