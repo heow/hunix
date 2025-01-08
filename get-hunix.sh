@@ -28,18 +28,11 @@ add_gitignore () {
 cd ${HOME}
 
 # dependencies
-if  which curl > /dev/null 2>&1 ; then
-    echo "curl ok"
-else
-    echo "installing curl..."
-    sudo apt-get install curl
-fi
-
 if  which git > /dev/null 2>&1 ; then
     echo "git ok"
 else
-    echo "installing git..."
-    sudo apt-get install git
+    echo "git required"
+    exit 1
 fi
 
 # clone from repo read-only into ~/.local/bin
