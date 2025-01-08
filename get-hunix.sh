@@ -26,12 +26,6 @@ add_gitignore () {
 }
 
 cd ${HOME}
-if [ -f "${BIN}/.gitignore" ] ; then
-    echo "hunix is already installed, updating..."
-    cd ${BIN}
-    git pull
-    exit 0
-fi
 
 # dependencies
 if  which curl > /dev/null 2>&1 ; then
@@ -49,14 +43,19 @@ else
 fi
 
 # clone from repo read-only into ~/.local/bin
-if [ -z "$1" ]; then
-    echo "getting read-only from github..."
-    git clone https://github.com/heow/hunix.git ${HOME}/.local/bin
+if [ -f "${BIN}/.gitignore" ] ; then
+    echo "hunix is already installed, updating..."
+    cd ${BIN}
+    git pull
 else
-    echo "getting read-write from github..."
-    git clone git@github.com:heow/hunix.git ${HOME}/.local/bin
+    if [ -z "$1" ]; then
+        echo "getting read-only from github..."
+        git clone https://github.com/heow/hunix.git ${HOME}/.local/bin
+    else
+        echo "getting read-write from github..."
+        git clone git@github.com:heow/hunix.git ${HOME}/.local/bin
+    fi
 fi
-exit
 
 # symlink the dotfiles to home
 ~/.local/bin/ln2home.sh ~/.local/bin/etc-dotfiles/
