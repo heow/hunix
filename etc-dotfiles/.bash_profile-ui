@@ -121,6 +121,17 @@ else
     fi
 fi
 
+if [ ! -z "$TMUX" ]; then
+    echo ""
+    echo "tmux notes: "
+    echo "  prefix is ^Z"
+    echo "  use alt-arrow keys to switch panes"
+    echo "  use shift-arrow keys to switch windows"
+    echo "  split windows horiz and vert with h and v"
+    echo ""
+fi
+
+
 pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
         PATH=${PATH//":$1"/} #delete any instances in the middle or at the end
