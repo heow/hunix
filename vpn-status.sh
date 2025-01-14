@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "VPN status..."
-echo -n "  TailScale:  " 
+echo "  TailScale:  " 
 tailscale status
 echo -n "  Express:    "
 expressvpn status 2>/dev/null
