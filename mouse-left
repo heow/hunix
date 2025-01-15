@@ -1,1 +1,8 @@
-xmodmap -e "pointer = 3 2 1 4 5 6 7 8 9"
+#!/bin/sh
+
+# gnome specific
+echo "gnome setup for left-handed mousing"
+gsettings set org.gnome.desktop.peripherals.mouse left-handed  true
+
+# old school swap, but also swaps for touchpad
+# xmodmap -e "pointer = 3 2 1 4 5 6 7 8 9"
